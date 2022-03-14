@@ -1,0 +1,138 @@
+.fs-date {
+  font-size: 14px;
+}
+
+.wrapper {
+  min-height: 100vh;
+}
+
+.auth-wrapper {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+
+  .auth-container {
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgb(246, 252, 252);
+    width: 500px;
+
+    .auth-content {
+      padding: 10%;
+      padding-top: 5%;
+      position: relative;
+      display: block;
+      height: 400px;
+
+      .input-block {
+        padding: 0 10% 0 10%;
+        margin-bottom: 3rem;
+      }
+
+      .signin-options {
+        display: flex;
+        height: 40px;
+
+        .line {
+          margin: 5px auto 0 auto;
+          width: 150px;
+          height: 3px;
+          background-color: #6c757d;
+        }
+
+        .line-active {
+          margin: 5px auto 0 auto;
+          width: 150px;
+          height: 3px;
+          background-color: #1ba05b;
+        }
+
+        .signin-option {
+          height: 100%;
+          width: 50%;
+          cursor: pointer;
+
+          .login-label {
+            text-align: center;
+            margin-top: 8px;
+            border-right: 1px solid #6c757d;
+            font-weight: 500;
+            letter-spacing: 1px;
+          }
+
+          .login-label-unactive {
+            color: #6c757d;
+            text-align: center;
+            margin-top: 8px;
+            border-right: 1px solid #6c757d;
+            font-weight: 500;
+            letter-spacing: 1px;
+          }
+
+          .login-label-unactive:hover {
+            color: rgb(209, 209, 209);
+          }
+
+          .signin-label {
+            text-align: center;
+            margin-top: 8px;
+            border-left: 1px solid #6c757d;
+            font-weight: 500;
+            letter-spacing: 1px;
+          }
+
+          .signin-label-unactive {
+            color: #6c757d;
+            text-align: center;
+            margin-top: 8px;
+            border-left: 1px solid #6c757d;
+            font-weight: 500;
+            letter-spacing: 1px;
+          }
+
+          .signin-label-unactive:hover {
+            color: rgb(209, 209, 209);
+          }
+        }
+      }
+    }
+  }
+}
+
+.bg-gray {
+  background-color: #2d3338;
+}
+
+.border-gray-lighten {
+  border-color: #393f46;
+}
+.user-wrapper {
+  position: relative;
+
+  .user-dropdown {
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    height: auto;
+    top: 60px;
+    right: -10px;
+  }
+
+  .user-dropdown-enter {
+    opacity: 0;
+  }
+
+  .user-dropdown-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+
+  .user-dropdown-exit {
+    opacity: 1;
+  }
+
+  .user-dropdown-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+}
