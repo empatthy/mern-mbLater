@@ -1,19 +1,31 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('config');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const errorMiddleware = require('./middleware/error-middleware');
 
 const app = express();
 
 app.use(express.json({ extended: true }));
+app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL,
+  }),
+);
 
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/article', require('./routes/article.routes'));
 
-const PORT = process.env.PORT || config.get('port');
+app.use(errorMiddleware);
+
+const PORT = process.env.PORT || 8000;
 
 async function start() {
   try {
-    await mongoose.connect(config.get('mongoUri'), {
+    await mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

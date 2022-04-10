@@ -1,46 +1,33 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { useHttp } from '../hooks/http.hook';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../hooks';
+import { login, registration, LoginPayload, RegistrationPayload } from '../slices/authSlice';
 
 export const AuthPage: React.FC = (props) => {
-  const navigate = useNavigate();
-  const { loading, request } = useHttp();
-  const { isAuthenticated, login, logout } = useContext(AuthContext);
+  const dispatch = useAppDispatch();
   const [authToggle, setAuthToggle] = useState(true);
 
-  const [form, serForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  const changeHandler = (event: any) => {
-    serForm({ ...form, [event.target.name]: event.target.value });
+  const loginPayload: LoginPayload = {
+    email: email,
+    password: password,
+  };
+
+  const registrationPayload: RegistrationPayload = {
+    name: name,
+    email: email,
+    password: password,
   };
 
   const registerHandler = async () => {
-    try {
-      await request('/api/auth/register', 'POST', {
-        ...form,
-        isAdmin: false,
-        isEditor: false,
-      });
-    } catch (e) {}
+    dispatch(registration(registrationPayload));
   };
 
   const loginHandler = async () => {
-    try {
-      const data = await request('/api/auth/login', 'POST', { ...form });
-      login(data.token, data.userId);
-    } catch (e) {}
-  };
-
-  const logoutHandle = (event: any) => {
-    event.preventDefault();
-    logout();
-    navigate('/');
+    dispatch(login(loginPayload));
   };
 
   return (
@@ -64,34 +51,37 @@ export const AuthPage: React.FC = (props) => {
               <div className="input-group mb-3">
                 <input
                   placeholder="имя"
+                  value={name}
                   name="name"
                   type="text"
                   className="form-control bg-dark text-light border-secondary"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm"
-                  onChange={changeHandler}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="input-group mb-3">
                 <input
                   placeholder="email"
+                  value={email}
                   name="email"
                   type="text"
                   className="form-control bg-dark text-light border-secondary"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm"
-                  onChange={changeHandler}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="input-group mb-3">
                 <input
                   placeholder="пароль"
+                  value={password}
                   name="password"
                   type="text"
                   className="form-control bg-dark text-light border-secondary"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm"
-                  onChange={changeHandler}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -100,30 +90,31 @@ export const AuthPage: React.FC = (props) => {
               <div className="input-group mb-3">
                 <input
                   placeholder="email"
+                  value={email}
                   name="email"
                   type="text"
                   className="form-control bg-dark text-light border-secondary"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm"
-                  onChange={changeHandler}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="input-group mb-3">
                 <input
                   placeholder="пароль"
+                  value={password}
                   name="password"
                   type="text"
                   className="form-control bg-dark text-light border-secondary"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-sm"
-                  onChange={changeHandler}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
           )}
           <button
             onClick={authToggle ? loginHandler : registerHandler}
-            disabled={loading}
             type="button"
             className="btn btn-success m-auto">
             {authToggle ? 'Войти' : 'Зарегистрироваться'}

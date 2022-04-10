@@ -2,46 +2,47 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { AuthContext } from './context/AuthContext';
+import { useAppDispatch, useAppSelector } from './hooks';
+import { checkAuth, selectIsAuth, selectIsLoading } from './slices/authSlice';
 import { AuthPage } from './pages/AuthPage';
 import { Home } from './pages/Home';
 import { EditArticlePage } from './pages/EditArticlePage';
-import { useAuth } from './hooks/auth.hook';
+import { AddArticlePage } from './pages/AddArticlePage';
 import { Loader } from './components/Loader';
 
 function App() {
-  const { token, login, logout, userId, ready } = useAuth();
-  const isAuthenticated = !!token;
+  const dispath = useAppDispatch();
+  const isAuth = useAppSelector(selectIsAuth);
+  const isLoading = useAppSelector(selectIsLoading);
 
-  if (!ready) {
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispath(checkAuth());
+    }
+  }, []);
+
+  if (isLoading) {
     return <Loader />;
   }
 
   return (
-    <AuthContext.Provider
-      value={{
-        token,
-        login,
-        logout,
-        userId,
-        isAuthenticated,
-      }}>
-      <BrowserRouter>
-        {isAuthenticated ? (
-          <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<EditArticlePage />} path="/edit" />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<AuthPage />} path="/auth" />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        )}
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <BrowserRouter>
+      {isAuth ? (
+        <Routes>
+          <Route element={<Home />} path="/" />
+          <Route element={<AuthPage />} path="/auth" />
+          <Route element={<EditArticlePage />} path="/edit" />
+          <Route element={<AddArticlePage />} path="/add" />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route element={<Home />} path="/" />
+          <Route element={<AuthPage />} path="/auth" />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      )}
+    </BrowserRouter>
   );
 }
 
