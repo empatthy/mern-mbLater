@@ -9,5 +9,5 @@ export interface IArticle {
   likes: number;
   dislikes: number;
   comments: string;
-  id: string;
+  _id: string;
 }

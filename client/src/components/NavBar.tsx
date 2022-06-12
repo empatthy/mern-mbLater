@@ -7,7 +7,7 @@ export const NavBar: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-gray">
       <div className="container">
-        <Link to="/" className="navbar-brand">
+        <Link to="/articles" className="navbar-brand">
           mbLater
         </Link>
         <button

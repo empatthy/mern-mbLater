@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { NavBar } from '../components/NavBar';
 import { addArticle, addArticlePayload } from '../slices/articlesSlice';
@@ -28,38 +28,45 @@ export const AddArticlePage: React.FC = (props) => {
 
   const addArticleHandle = () => {
     dispatch(addArticle(articlePayload));
-    console.log(articlePayload);
   };
 
   return (
     <div className="wrapper bg-dark">
       <NavBar />
-      <div>
-        <p className="text-light my-3">Title</p>
-        <input
-          name="title"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-          className="me-2"
-        />
-        <p className="text-light my-3">Description</p>
-        <input
-          name="desc"
-          onChange={(e) => setDesc(e.target.value)}
-          value={description}
-          className="me-2"
-        />
-        <p className="text-light my-3">Body</p>
-        <input
-          name="body"
-          onChange={(e) => setBody(e.target.value)}
-          value={body}
-          className="me-2"
-        />
+      <div className="container mt-3">
+        <div>
+          <div className="form-floating my-3">
+            <textarea
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+              className="form-control"
+              placeholder="Leave a comment here"
+              id="floatingTextarea"></textarea>
+            <label>Заголовок</label>
+          </div>
+          <div className="form-floating">
+            <textarea
+              onChange={(e) => setDesc(e.target.value)}
+              value={description}
+              className="form-control my-3"
+              placeholder="Leave a comment here"
+              id="floatingTextarea"></textarea>
+            <label>Описание</label>
+          </div>
+          <div className="form-floating">
+            <textarea
+              onChange={(e) => setBody(e.target.value)}
+              value={body}
+              className="form-control my-3"
+              placeholder="Leave a comment here"
+              id="floatingTextarea"></textarea>
+            <label>Тело статьи</label>
+          </div>
+        </div>
+        <button onClick={addArticleHandle} className="btn btn-success">
+          Опубликовать
+        </button>
       </div>
-      <button onClick={addArticleHandle} className="btn btn-success">
-        Опубликовать
-      </button>
     </div>
   );
 };

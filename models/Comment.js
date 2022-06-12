@@ -2,11 +2,11 @@ const { Schema, model, Types } = require('mongoose');
 
 const comment = new Schema({
   body: { type: String, required: true },
-  author: [{ type: Types.ObjectId, ref: 'User' }],
-  date: { type: Date, required: true },
-  likes: { type: Number, required: true },
-  dislikes: { type: Number, required: true },
-  answers: [{ type: Types.ObjectId, ref: 'Comment' }],
+  article: { type: Types.ObjectId, ref: 'Article', required: true },
+  author: { type: Types.ObjectId, ref: 'User', required: true },
+  date: { type: String, required: true },
+  answerTo: { type: Types.ObjectId, ref: 'Comment' },
+  replies: [{ type: String }],
 });
 
 module.exports = model('Comment', comment);

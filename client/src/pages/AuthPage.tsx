@@ -33,7 +33,7 @@ export const AuthPage: React.FC = (props) => {
   return (
     <div className="auth-wrapper bg-dark">
       <div className="auth-container bg-dark">
-        <div className="auth-content bg-gray border border-secondary">
+        <div className="auth-content bg-gray border-all border-gray">
           <div className="signin-options text-light mb-5">
             <div onClick={() => setAuthToggle(true)} className="signin-option">
               <div className={authToggle ? 'login-label' : 'login-label-unactive'}>ВХОД</div>
@@ -49,67 +49,77 @@ export const AuthPage: React.FC = (props) => {
           {!authToggle ? (
             <div className="input-block">
               <div className="input-group mb-3">
-                <input
-                  placeholder="имя"
-                  value={name}
-                  name="name"
-                  type="text"
-                  className="form-control bg-dark text-light border-secondary"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  onChange={(e) => setName(e.target.value)}
-                />
+                <div className="col-md">
+                  <div className="form-floating">
+                    <input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      type="text"
+                      className="form-control"
+                      id="floatingInputGridName"
+                    />
+                    <label>Name</label>
+                  </div>
+                </div>
               </div>
               <div className="input-group mb-3">
-                <input
-                  placeholder="email"
-                  value={email}
-                  name="email"
-                  type="text"
-                  className="form-control bg-dark text-light border-secondary"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <div className="col-md">
+                  <div className="form-floating">
+                    <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      className="form-control"
+                      id="floatingInputGridEmail"
+                    />
+                    <label>Email address</label>
+                  </div>
+                </div>
               </div>
               <div className="input-group mb-3">
-                <input
-                  placeholder="пароль"
-                  value={password}
-                  name="password"
-                  type="text"
-                  className="form-control bg-dark text-light border-secondary"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="col-md">
+                  <div className="form-floating">
+                    <input
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      type="password"
+                      className="form-control"
+                      id="floatingInputGridPassword"
+                    />
+                    <label>Password</label>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
             <div className="input-block">
               <div className="input-group mb-3">
-                <input
-                  placeholder="email"
-                  value={email}
-                  name="email"
-                  type="text"
-                  className="form-control bg-dark text-light border-secondary"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <div className="col-md">
+                  <div className="form-floating">
+                    <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="email"
+                      className="form-control"
+                      id="floatingInputGridEmail"
+                    />
+                    <label>Email address</label>
+                  </div>
+                </div>
               </div>
               <div className="input-group mb-3">
-                <input
-                  placeholder="пароль"
-                  value={password}
-                  name="password"
-                  type="text"
-                  className="form-control bg-dark text-light border-secondary"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="col-md">
+                  <div className="form-floating">
+                    <input
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      type="password"
+                      className="form-control"
+                      id="floatingInputGridPassword"
+                    />
+                    <label>Password</label>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -119,11 +129,6 @@ export const AuthPage: React.FC = (props) => {
             className="btn btn-success m-auto">
             {authToggle ? 'Войти' : 'Зарегистрироваться'}
           </button>
-          <div>
-            <Link className="text-decoration-none" to="/">
-              <p className="text-light">Home</p>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { selectIsAuth, logout } from '../slices/authSlice';
+import { selectIsAuth, logout, selectUserName } from '../slices/authSlice';
 
 export const UserDropdown: React.FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(selectIsAuth);
+  const userName = useAppSelector(selectUserName);
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -39,25 +40,28 @@ export const UserDropdown: React.FC = () => {
         unmountOnExit
         onEnter={() => setDropdownIsOpen(true)}
         onExited={() => setDropdownIsOpen(false)}>
-        <div className="user-dropdown bg-gray border border-secondary">
+        <div className="user-dropdown bg-gray border-all border-gray">
           <ul className="dropdown-menu-dark px-1 my-1">
             {isAuth ? (
               <>
-                <li className="dropdown-item text-light">Мой профиль</li>
+                <div className="border-bot border-gray-lighten">
+                  <p className="text-light mb-2 ms-3">{userName}</p>
+                </div>
+                <li className="dropdown-item text-light fw-lighter">Мой профиль</li>
                 <Link className="text-decoration-none" to="/add">
-                  <li className="dropdown-item text-light">Создать статью</li>
+                  <li className="dropdown-item text-light fw-light">Создать статью</li>
                 </Link>
               </>
             ) : (
               <Link className="text-decoration-none" to="/auth">
-                <li className="dropdown-item text-light">Вход</li>
+                <li className="dropdown-item text-light fw-light">Вход</li>
               </Link>
             )}
-            <li className="dropdown-item text-light">Настройки</li>
+            <li className="dropdown-item text-light fw-light">Настройки</li>
             {isAuth && (
               <>
                 <hr className="dropdown-divider my-1" />
-                <li onClick={logoutHandle} className="dropdown-item text-light">
+                <li onClick={logoutHandle} className="dropdown-item text-light fw-light">
                   Выход
                 </li>
               </>

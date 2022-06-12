@@ -99,6 +99,7 @@ export const authSlice = createSlice({
 
 export const selectIsAuth = (state: RootState) => state.auth.isAuth;
 export const selectIsLoading = (state: RootState) => state.auth.isLoading;
-export const selectUserId = (state: RootState) => state.auth.user.id;
+export const selectUserId = (state: RootState) => state.auth.user._id;
+export const selectUserName = (state: RootState) => state.auth.user.name;
 
 export default authSlice.reducer;

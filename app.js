@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const errorMiddleware = require('./middleware/error-middleware');
@@ -8,6 +9,7 @@ const errorMiddleware = require('./middleware/error-middleware');
 const app = express();
 
 app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
@@ -18,6 +20,9 @@ app.use(
 
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/article', require('./routes/article.routes'));
+app.use('/api/users', require('./routes/user.routes'));
+app.use('/api/reaction', require('./routes/reaction.routes'));
+app.use('/api/comment', require('./routes/comment.routes'));
 
 app.use(errorMiddleware);
 
