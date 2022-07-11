@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { NavBar } from '../components/NavBar';
-import { Card } from '../components/Card';
+import { NavBar, Card } from '../components';
 
 import { selectAllArticles, selectArticlesStatus } from '../slices/articlesSlice';
-import { useAppSelector, useAppDispatch } from '../hooks';
+import { useAppSelector } from '../hooks';
 
 export const Home: React.FC = () => {
-  const dispatch = useAppDispatch();
   const articles = useAppSelector(selectAllArticles);
   const articlesStatus = useAppSelector(selectArticlesStatus);
 
   const renderedArticles = () => {
-    return articles.map((article) => <Card {...article} />);
+    return articles.map((article, index) => <Card key={index} {...article} />);
   };
 
   return (

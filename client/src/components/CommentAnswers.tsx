@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { TimeAgo } from './TimeAgo';
-import { IUser } from '../models/IUser';
-import { IArticle } from '../models/IArticle';
-import { IComment } from '../models/IComment';
-import { useAppSelector } from '../hooks';
-import { selectUserId } from '../slices/authSlice';
-import CommentService from '../services/CommentService';
-import { Comment } from './Comment';
+import React, { useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../hooks';
+import { Comment } from './';
+import { getCommentReplies, selectCommentReplies, answersReset } from '../slices/commentSlice';
 
 interface CommentAnswersProps {
   mainCommentId: string;
 }
 
 export function CommentAnswers(prop: CommentAnswersProps) {
-  const [replies, setReplies] = useState<IComment[]>();
-  console.log('replies', replies);
+  const dispatch = useAppDispatch();
+  const replies = useAppSelector((state) => selectCommentReplies(state, prop.mainCommentId));
 
   useEffect(() => {
-    const fetchReplies = async () => {
-      const response = await CommentService.getCommentReplies(prop.mainCommentId);
-      console.log('useEffect/replies', response.data);
-      setReplies(response.data);
+    dispatch(getCommentReplies(prop.mainCommentId));
+
+    return () => {
+      dispatch(answersReset(prop.mainCommentId));
     };
-    fetchReplies();
   }, []);
 
   const renderedReplies = () => {

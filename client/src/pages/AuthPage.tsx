@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 import { useAppDispatch } from '../hooks';
 import { login, registration, LoginPayload, RegistrationPayload } from '../slices/authSlice';
+import { SocketContext } from '../socket/socket-context';
 
 export const AuthPage: React.FC = (props) => {
   const dispatch = useAppDispatch();
   const [authToggle, setAuthToggle] = useState(true);
+  const socketContext = useContext(SocketContext);
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -28,6 +29,9 @@ export const AuthPage: React.FC = (props) => {
 
   const loginHandler = async () => {
     dispatch(login(loginPayload));
+    import('../socket/socket').then(({ socket }) => {
+      socketContext.setSocket(socket);
+    });
   };
 
   return (

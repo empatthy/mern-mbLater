@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { NavBar } from '../components/NavBar';
+import { NavBar, getDateNowISO } from '../components';
 import { addArticle, addArticlePayload } from '../slices/articlesSlice';
 import { selectUserId } from '../slices/authSlice';
 import { useAppDispatch, useAppSelector } from '../hooks';
@@ -13,11 +13,6 @@ export const AddArticlePage: React.FC = (props) => {
   const [description, setDesc] = useState<string>('');
   const [body, setBody] = useState<string>('');
 
-  const getDateNowISO = () => {
-    const d = new Date().toISOString();
-    return d;
-  };
-
   const articlePayload: addArticlePayload = {
     title: title,
     description: description,
@@ -28,6 +23,9 @@ export const AddArticlePage: React.FC = (props) => {
 
   const addArticleHandle = () => {
     dispatch(addArticle(articlePayload));
+    setTitle('');
+    setDesc('');
+    setBody('');
   };
 
   return (
@@ -63,7 +61,10 @@ export const AddArticlePage: React.FC = (props) => {
             <label>Тело статьи</label>
           </div>
         </div>
-        <button onClick={addArticleHandle} className="btn btn-success">
+        <button
+          onClick={addArticleHandle}
+          disabled={!title || !description || !body}
+          className="btn btn-success">
           Опубликовать
         </button>
       </div>

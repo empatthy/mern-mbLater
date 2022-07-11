@@ -5,6 +5,11 @@ interface TimeAgoProp {
   date: string;
 }
 
+export const getDateNowISO = () => {
+  const d = new Date().toISOString();
+  return d;
+};
+
 export function TimeAgo(prop: TimeAgoProp) {
   let timeAgo = '';
   if (prop.date) {
@@ -13,5 +18,5 @@ export function TimeAgo(prop: TimeAgoProp) {
     timeAgo = `${timePeriod} ago`;
   }
 
-  return <p className="fw-lighter fs-date mb-1">{timeAgo}</p>;
+  return <p className="fw-lighter fs-date mb-1 text-light">{timeAgo}</p>;
 }

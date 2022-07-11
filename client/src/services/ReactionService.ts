@@ -4,12 +4,12 @@ import $api from '../http';
 
 export default class ReactionService {
   static async addReaction(
-    articleId: string,
+    to: string,
     userId: string,
     reactionType: boolean,
   ): Promise<AxiosResponse<IReaction>> {
     return await $api.post<IReaction>('/api/reaction/addReaction', {
-      articleId,
+      to,
       userId,
       reactionType,
     });
@@ -19,14 +19,14 @@ export default class ReactionService {
     return await $api.get<IReaction[]>('/api/reaction/getAllReactions');
   }
 
-  static async getArticleReactions(articleId: string): Promise<AxiosResponse<IReaction[]>> {
-    return await $api.get<IReaction[]>(`/api/reaction/getArticleReactions/${articleId}`);
+  static async getItemReactions(to: string): Promise<AxiosResponse<IReaction[]>> {
+    return await $api.get<IReaction[]>(`/api/reaction/getItemReactions/${to}`);
   }
 
-  static async removeReaction(articleId: string, userId: string) {
+  static async removeReaction(to: string, userId: string) {
     return await $api.delete(`/api/reaction/removeReaction`, {
       data: {
-        articleId,
+        to,
         userId,
       },
     });

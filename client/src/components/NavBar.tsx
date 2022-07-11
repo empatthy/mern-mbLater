@@ -1,9 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../hooks';
+import { selectIsAuth } from '../slices/authSlice';
 
-import { UserDropdown } from './UserDropdown';
+import { UserDropdown } from './';
+import { NotificationsDropdown } from './NotificationsDropdown';
 
 export const NavBar: React.FC = () => {
+  const isAuth = useAppSelector(selectIsAuth);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-gray">
       <div className="container">
@@ -29,6 +34,7 @@ export const NavBar: React.FC = () => {
               placeholder="Search"
               aria-label="Search"
             /> */}
+            {isAuth && <NotificationsDropdown />}
             <UserDropdown />
           </form>
         </div>

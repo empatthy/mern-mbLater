@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/addReaction', reactionController.addReaction);
 router.get('/getAllReactions', reactionController.getAllReactions);
-router.get('/getArticleReactions/:articleId', reactionController.getArticleReactions);
+router.get('/getItemReactions/:to', reactionController.getItemReactions);
 router.delete('/removeReaction', reactionController.removeReaction);
 
 module.exports = router;

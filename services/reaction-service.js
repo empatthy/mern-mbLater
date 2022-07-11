@@ -1,10 +1,9 @@
-const res = require('express/lib/response');
 const Reaction = require('../models/Reaction');
 
 class ReactionService {
-  async addReaction(articleId, userId, reactionType) {
+  async addReaction(to, userId, reactionType) {
     const reaction = await Reaction.create({
-      article: articleId,
+      to: to,
       user: userId,
       reactionType,
     });
@@ -16,13 +15,13 @@ class ReactionService {
     return reactions;
   }
 
-  async getArticleReactions(articleId) {
-    const reactions = await Reaction.find({ article: articleId }).populate('article', '_id');
+  async getItemReactions(to) {
+    const reactions = await Reaction.find({ to: to }).populate('to', '_id');
     return reactions;
   }
 
-  async removeReaction(articleId, userId) {
-    await Reaction.deleteOne({ article: articleId, user: userId })
+  async removeReaction(to, userId) {
+    await Reaction.deleteOne({ to: to, user: userId })
       .populate('article', '_id')
       .populate('user', '_id');
   }

@@ -3,6 +3,7 @@ import authReducer from '../slices/authSlice';
 import articlesReducer from '../slices/articlesSlice';
 import reactionsReducer from '../slices/reactionsSlice';
 import commentsReducer from '../slices/commentSlice';
+import notificationsReducer from '../slices/notificationsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     articles: articlesReducer,
     reactions: reactionsReducer,
     comments: commentsReducer,
+    notifications: notificationsReducer,
   },
 });
 

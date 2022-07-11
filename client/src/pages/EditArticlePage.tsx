@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavBar } from '../components/NavBar';
+import { NavBar } from '../components';
 
 export const EditArticlePage: React.FC = (props) => {
   return (

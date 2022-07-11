@@ -3,8 +3,8 @@ const reactionService = require('../services/reaction-service');
 class ReactionController {
   async addReaction(req, res, next) {
     try {
-      const { articleId, userId, reactionType } = req.body;
-      const reaction = await reactionService.addReaction(articleId, userId, reactionType);
+      const { to, userId, reactionType } = req.body;
+      const reaction = await reactionService.addReaction(to, userId, reactionType);
       return res.json(reaction);
     } catch (e) {
       next(e);
@@ -20,10 +20,10 @@ class ReactionController {
     }
   }
 
-  async getArticleReactions(req, res, next) {
+  async getItemReactions(req, res, next) {
     try {
-      const { articleId } = req.params;
-      const reactions = await reactionService.getArticleReactions(articleId);
+      const { to } = req.params;
+      const reactions = await reactionService.getItemReactions(to);
       return res.json(reactions);
     } catch (e) {
       next(e);
@@ -32,10 +32,10 @@ class ReactionController {
 
   async removeReaction(req, res, next) {
     try {
-      const { articleId, userId } = req.body;
+      const { to, userId } = req.body;
 
-      await reactionService.removeReaction(articleId, userId);
-      return res.status(200).json({ articleId, userId });
+      await reactionService.removeReaction(to, userId);
+      return res.status(200).json({ to, userId });
     } catch (e) {
       next(e);
     }

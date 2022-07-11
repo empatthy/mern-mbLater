@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { NavBar } from '../components/NavBar';
+import { NavBar, Card } from '../components';
 import { useParams } from 'react-router-dom';
 import userService from '../services/UserService';
 import { IUser } from '../models/IUser';
-import { selectUsersArticles, fetchUserArticles } from '../slices/articlesSlice';
+import { selectUsersArticles } from '../slices/articlesSlice';
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { Card } from '../components/Card';
 
 export const UserPage: React.FC = () => {
   const [user, setUser] = useState<IUser>({} as IUser);

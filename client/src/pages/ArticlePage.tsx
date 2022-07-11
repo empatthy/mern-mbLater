@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { TimeAgo } from '../components/TimeAgo';
-import { NavBar } from '../components/NavBar';
+import { TimeAgo, NavBar, Comment, getDateNowISO } from '../components';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useParams, Link } from 'react-router-dom';
 import {
@@ -9,7 +8,7 @@ import {
   AddReactionPayload,
   removeReaction,
   RemoveReactionPayload,
-  selectArticleReactions,
+  selectItemReactions,
 } from '../slices/reactionsSlice';
 import {
   addComment,
@@ -18,8 +17,12 @@ import {
   getArticleComments,
 } from '../slices/commentSlice';
 import { selectUserId } from '../slices/authSlice';
-import { Comment } from '../components/Comment';
 import { deleteArticle } from '../slices/articlesSlice';
+
+import likeIcon from '../img/like-button.svg';
+import likeIconActive from '../img/like-button-active.svg';
+import dislikeIcon from '../img/dislike-button.svg';
+import dislikeIconActive from '../img/dislike-button-active.svg';
 
 export const ArticlePage: React.FC = () => {
   const [body, setBody] = useState<string>('');
@@ -30,7 +33,7 @@ export const ArticlePage: React.FC = () => {
   );
   const authUserId = useAppSelector(selectUserId);
 
-  const reactions = useAppSelector((state) => selectArticleReactions(state, articleId));
+  const reactions = useAppSelector((state) => selectItemReactions(state, articleId));
   const likes = reactions.filter((item) => item.reactionType === true);
   const dislikes = reactions.filter((item) => item.reactionType === false);
   const userReaction = reactions.find((item) => item.user === authUserId);
@@ -51,12 +54,15 @@ export const ArticlePage: React.FC = () => {
   };
 
   const likeHandle = () => {
+    if (article?.author._id === authUserId) {
+      return;
+    }
     if (userReaction) {
       removeReactionHandle();
     }
-    if (article) {
+    if (article && !userReaction) {
       const addArticlePayload: AddReactionPayload = {
-        articleId: article._id,
+        to: article._id,
         userId: authUserId,
         reactionType: true,
       };
@@ -65,12 +71,15 @@ export const ArticlePage: React.FC = () => {
   };
 
   const dislikeHandle = () => {
+    if (article?.author._id === authUserId) {
+      return;
+    }
     if (userReaction) {
       removeReactionHandle();
     }
     if (article) {
       const addArticlePayload: AddReactionPayload = {
-        articleId: article._id,
+        to: article._id,
         userId: authUserId,
         reactionType: false,
       };
@@ -81,16 +90,11 @@ export const ArticlePage: React.FC = () => {
   const removeReactionHandle = () => {
     if (article && userReaction) {
       const removeRactionPayload: RemoveReactionPayload = {
-        articleId: article?._id,
+        to: article?._id,
         userId: authUserId,
       };
       dispatch(removeReaction(removeRactionPayload));
     }
-  };
-
-  const getDateNowISO = () => {
-    const d = new Date().toISOString();
-    return d;
   };
 
   const addCommentHandle = () => {
@@ -129,26 +133,18 @@ export const ArticlePage: React.FC = () => {
           <div className="bg-gray-lighten d-flex border-bot border-lr border-gray">
             <div className="d-flex ms-4 my-2">
               <img
-                className="reaction-img my-auto"
+                className="reaction-img my-auto cursor-p"
                 onClick={userReaction?.reactionType === true ? removeReactionHandle : likeHandle}
-                src={
-                  userReaction?.reactionType === true
-                    ? '/img/like-button-active.svg'
-                    : '/img/like-button.svg'
-                }
+                src={userReaction?.reactionType === true ? likeIconActive : likeIcon}
                 alt="like"
               />
               <p className="fw-lighter my-auto mx-3">{likes.length}</p>
               <img
-                className="reaction-img my-auto"
+                className="reaction-img my-auto cursor-p"
                 onClick={
                   userReaction?.reactionType === false ? removeReactionHandle : dislikeHandle
                 }
-                src={
-                  userReaction?.reactionType === false
-                    ? '/img/dislike-button-active.svg'
-                    : '/img/dislike-button.svg'
-                }
+                src={userReaction?.reactionType === false ? dislikeIconActive : dislikeIcon}
                 alt="dislike"
               />
               <p className="fw-lighter my-auto mx-3">{dislikes.length}</p>

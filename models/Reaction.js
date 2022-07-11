@@ -1,7 +1,7 @@
 const { Schema, model, Types } = require('mongoose');
 
 const reaction = new Schema({
-  article: { type: Types.ObjectId, ref: 'Article', required: true },
+  to: { type: Types.ObjectId, ref: 'Article', required: true },
   user: { type: Types.ObjectId, ref: 'User', required: true },
   reactionType: { type: Boolean, required: true },
 });

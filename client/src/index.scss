@@ -4,6 +4,10 @@
   display: inline-block;
 }
 
+.color-grey {
+  color: #d5d5d5;
+}
+
 .fs-date {
   font-size: 14px;
 }
@@ -11,6 +15,21 @@
 .fs-userdropdown {
   font-size: 14px;
   color: #b8b8b8;
+}
+
+.counter {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -3px;
+  right: -3px;
 }
 
 .wrapper {
@@ -114,7 +133,7 @@
   background-color: #2d3338;
 }
 
-.user-wrapper {
+.navbar-button-wrapper {
   position: relative;
 
   .user-dropdown {
@@ -122,8 +141,9 @@
     z-index: 1;
     width: auto;
     height: auto;
-    top: 46px;
+    top: 35px;
     right: -10px;
+    background: rgba(45, 51, 56, 0.95);
   }
 
   .user-dropdown-enter {
@@ -140,6 +160,53 @@
   }
 
   .user-dropdown-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  .notifications-dropdown {
+    position: absolute;
+    z-index: 1;
+    max-width: 400px;
+    max-height: 500px;
+    top: 35px;
+    right: -10px;
+    background: rgba(45, 51, 56, 0.95);
+
+    .notifications-list {
+      width: max-content;
+      max-width: 100%;
+
+      height: auto;
+      max-height: 450px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      .dropdown-item {
+        white-space: normal;
+      }
+
+      .notification-new {
+        background: rgba(69, 79, 86, 0.95);
+        height: auto;
+      }
+    }
+  }
+
+  .notifications-dropdown-enter {
+    opacity: 0;
+  }
+
+  .notifications-dropdown-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+
+  .notifications-dropdown-exit {
+    opacity: 1;
+  }
+
+  .notifications-dropdown-exit-active {
     opacity: 0;
     transition: opacity 200ms;
   }
@@ -199,5 +266,10 @@
   width: 100%;
 }
 
-.replies {
+.cursor-p {
+  cursor: pointer;
+}
+
+.dropdown-item {
+  width: auto;
 }

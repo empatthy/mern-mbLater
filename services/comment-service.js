@@ -8,7 +8,10 @@ class CommentService {
       author: userId,
       date,
     });
-    return comment;
+    const commentToReturn = Comment.findOne({ _id: comment._id })
+      .populate('author', 'name')
+      .populate('article', '_id');
+    return commentToReturn;
   }
 
   async replyComment(body, articleId, userId, date, answerTo) {
@@ -21,13 +24,18 @@ class CommentService {
     });
     const { _id } = comment;
     await Comment.findOneAndUpdate({ _id: answerTo }, { $addToSet: { replies: _id } });
-    return comment;
+    const commentToReturn = Comment.findOne({ _id: comment._id })
+      .populate('answerTo', '_id')
+      .populate('author', 'name')
+      .populate('article', '_id');
+    return commentToReturn;
   }
 
   async getArticleComments(articleId) {
     const comments = await Comment.find({ article: articleId, answerTo: null })
       .populate('author', 'name')
-      .populate('article', '_id');
+      .populate('article', '_id')
+      .populate('answerTo', '_id');
     return comments;
   }
 
@@ -36,7 +44,6 @@ class CommentService {
       .populate('author', 'name')
       .populate('article', '_id')
       .populate('answerTo', '_id');
-    console.log('replies', replies);
     return replies;
   }
 }

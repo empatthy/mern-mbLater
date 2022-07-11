@@ -14,21 +14,21 @@ const initialState: ReactionsState = {
 };
 
 export type AddReactionPayload = {
-  articleId: string;
+  to: string;
   userId: string;
   reactionType: boolean;
 };
 
 export type RemoveReactionPayload = {
-  articleId: string;
+  to: string;
   userId: string;
 };
 
 export const addReaction = createAsyncThunk(
   'reactions/addReaction',
   async (data: AddReactionPayload) => {
-    const { articleId, userId, reactionType } = data;
-    const response = await ReactionService.addReaction(articleId, userId, reactionType);
+    const { to, userId, reactionType } = data;
+    const response = await ReactionService.addReaction(to, userId, reactionType);
     return response.data;
   },
 );
@@ -38,10 +38,10 @@ export const getAllReactions = createAsyncThunk('reactions/getAllReactions', asy
   return response.data;
 });
 
-export const getArticleReactions = createAsyncThunk(
-  'reactions/getArticleReactions',
-  async (articleId: string) => {
-    const response = await ReactionService.getArticleReactions(articleId);
+export const getItemReactions = createAsyncThunk(
+  'reactions/getItemReactions',
+  async (to: string) => {
+    const response = await ReactionService.getItemReactions(to);
     return response.data;
   },
 );
@@ -49,9 +49,8 @@ export const getArticleReactions = createAsyncThunk(
 export const removeReaction = createAsyncThunk(
   'reactions/removeReaction',
   async (data: RemoveReactionPayload) => {
-    const { articleId, userId } = data;
-    const response = await ReactionService.removeReaction(articleId, userId);
-    console.log(response.data);
+    const { to, userId } = data;
+    const response = await ReactionService.removeReaction(to, userId);
     return response.data;
   },
 );
@@ -75,27 +74,25 @@ const reactionsSlice = createSlice({
       .addCase(getAllReactions.rejected, (state) => {
         state.status = 'rejected';
       })
-      .addCase(getArticleReactions.pending, (state) => {
+      .addCase(getItemReactions.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(getArticleReactions.fulfilled, (state, action) => {
+      .addCase(getItemReactions.fulfilled, (state, action) => {
         state.items.push(...action.payload);
         state.status = 'succeeded';
       })
-      .addCase(getArticleReactions.rejected, (state) => {
+      .addCase(getItemReactions.rejected, (state) => {
         state.status = 'rejected';
       })
       .addCase(removeReaction.fulfilled, (state, action) => {
-        const { articleId, userId } = action.payload;
-        const itemToRemove = state.items.find(
-          (item) => item.article === articleId && item.user === userId,
-        );
+        const { to, userId } = action.payload;
+        const itemToRemove = state.items.find((item) => item.to === to && item.user === userId);
         state.items = state.items.filter((item) => item._id !== itemToRemove?._id);
       });
   },
 });
 
-export const selectArticleReactions = (state: RootState, articleId: string | undefined) =>
-  state.reactions.items.filter((item) => item.article === articleId);
+export const selectItemReactions = (state: RootState, to: string | undefined) =>
+  state.reactions.items.filter((item) => item.to === to);
 
 export default reactionsSlice.reducer;

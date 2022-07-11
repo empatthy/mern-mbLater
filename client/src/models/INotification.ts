@@ -1,9 +1,12 @@
 import { IUser } from './IUser';
-import { IArticle } from './IArticle';
 
 export interface INotification {
-  user: IUser;
-  type: 'commentReaction' | 'commentReply';
+  sender: IUser;
+  receiver: IUser;
+  notificationType: number;
   date: string;
-  message: string;
+  to: string;
+  new: boolean;
+  read: boolean;
+  _id: string;
 }
