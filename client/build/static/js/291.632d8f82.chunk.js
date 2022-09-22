@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkclient=self.webpackChunkclient||[]).push([[291],{7291:function(t,c,e){e.r(c),e.d(c,{socket:function(){return n}});var n=(0,e(2317).io)("http://localhost:5000")}}]);
+//# sourceMappingURL=291.632d8f82.chunk.js.map

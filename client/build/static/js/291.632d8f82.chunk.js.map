@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/291.632d8f82.chunk.js","mappings":"qJAEaA,GAASC,E,QAAAA,IAAG","sources":["socket/socket.ts"],"sourcesContent":["import { io } from 'socket.io-client';\r\n\r\nexport const socket = io('http://localhost:5000');\r\n"],"names":["socket","io"],"sourceRoot":""}

@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.01404973.css",
+    "main.js": "/static/js/main.61d57c55.js",
+    "static/js/291.632d8f82.chunk.js": "/static/js/291.632d8f82.chunk.js",
+    "static/js/317.5feff91a.chunk.js": "/static/js/317.5feff91a.chunk.js",
+    "static/media/marked.cjs": "/static/media/marked.98c687802f27b5607a57.cjs",
+    "static/media/gear-icon.svg": "/static/media/gear-icon.54e9698965631b3b9cdbb0c9f089599c.svg",
+    "static/media/notifications-icon-active.svg": "/static/media/notifications-icon-active.f1cf2236046c7a1ffd045ddc0b62cc10.svg",
+    "static/media/bell-grey.svg": "/static/media/bell-grey.ed3092afa6f968ddcea6c6d0196ed4e9.svg",
+    "static/media/notifications-icon.svg": "/static/media/notifications-icon.5629be9850002be4a83d863d6e3b6475.svg",
+    "static/media/picture-placeholder.svg": "/static/media/picture-placeholder.a1d765f2dbc171f166b22d4ba5d89930.svg",
+    "static/media/comment-icon.svg": "/static/media/comment-icon.16029b634826e31d4b1e98f50a1dba94.svg",
+    "static/media/can-light.svg": "/static/media/can-light.1a774dff0ae524926fca5d9be9c4734c.svg",
+    "static/media/can.svg": "/static/media/can.c9a143620c82287182287d2e2f2c0e82.svg",
+    "index.html": "/index.html",
+    "static/media/comment-menu-icon.svg": "/static/media/comment-menu-icon.7816f717374007b906443bc3d05fccf3.svg",
+    "static/media/log-out.svg": "/static/media/log-out.96386e39c821d57742db114bcb86f79a.svg",
+    "static/media/user.svg": "/static/media/user.a20846e637003f6f5be0433a66f01cee.svg",
+    "static/media/user2.svg": "/static/media/user2.1fcaa97a0eee1f580695c4258fe873f6.svg",
+    "static/media/edit.svg": "/static/media/edit.b4f545fe6b92f0f2a92a9dbc2d600910.svg",
+    "static/media/edit-light.svg": "/static/media/edit-light.9918f654575cd3db0b98b824eaf5d6e8.svg",
+    "static/media/add-cross-icon.svg": "/static/media/add-cross-icon.6dd81e0630f7ffda97be2bd3590a8d3e.svg",
+    "static/media/views-icon.svg": "/static/media/views-icon.6c1f143c402fe323b463546e088b563b.svg",
+    "static/media/hide-replies-icon.svg": "/static/media/hide-replies-icon.302bfb597493476d13f2118288faf333.svg",
+    "static/media/show-replies-icon.svg": "/static/media/show-replies-icon.cc4151804f7d14f4ebc1dca71f28f094.svg",
+    "main.01404973.css.map": "/static/css/main.01404973.css.map",
+    "main.61d57c55.js.map": "/static/js/main.61d57c55.js.map",
+    "291.632d8f82.chunk.js.map": "/static/js/291.632d8f82.chunk.js.map",
+    "317.5feff91a.chunk.js.map": "/static/js/317.5feff91a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.01404973.css",
+    "static/js/main.61d57c55.js"
+  ]
+}
