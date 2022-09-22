@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../hooks';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { Comment } from './';
-import { getCommentReplies, selectCommentReplies, answersReset } from '../slices/commentSlice';
+import {
+  getCommentReplies,
+  selectCommentReplies,
+  answersReset,
+} from '../redux/slices/commentSlice';
 
 interface CommentAnswersProps {
   mainCommentId: string;
@@ -25,5 +29,5 @@ export function CommentAnswers(prop: CommentAnswersProps) {
     }
   };
 
-  return <div className="replies">{renderedReplies()}</div>;
+  return <div>{renderedReplies()}</div>;
 }

@@ -1,0 +1,213 @@
+@import '../../styles/variables';
+
+%reactionSvg {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.articleWrapper {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .articleContainer {
+    padding: 16px 12px;
+    color: $light;
+
+    > h2 {
+      margin: 24px 16px;
+      word-break: break-word;
+    }
+
+    .article {
+      background-color: $gray;
+      border: 1px solid #444d52;
+      padding: 16px;
+
+      p {
+        text-indent: 2rem;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        margin: 0 auto 20px auto;
+      }
+
+      .body {
+        margin-left: 16px;
+        margin-right: 16px;
+
+        blockquote {
+          color: rgb(193, 193, 193);
+          margin: 0;
+          padding-left: 2em;
+          border-left: 0.5em rgb(94, 94, 94) solid;
+        }
+      }
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px;
+      background-color: #333a3e;
+      border: solid 1px #444d52;
+      border-top: none;
+
+      .reactions {
+        display: flex;
+        align-items: center;
+
+        button {
+          .likeSvg {
+            svg {
+              @extend %reactionSvg;
+              stroke: $light;
+              fill: none;
+            }
+          }
+
+          .likeSvgActive {
+            svg {
+              @extend %reactionSvg;
+              stroke: #77a85b;
+              fill: #77a85b;
+            }
+          }
+          .dislikeSvg {
+            svg {
+              @extend %reactionSvg;
+              stroke: $light;
+              fill: none;
+              transform: rotate(180deg);
+            }
+          }
+
+          .dislikeSvgActive {
+            svg {
+              @extend %reactionSvg;
+              stroke: #e35050;
+              fill: #e35050;
+              transform: rotate(180deg);
+            }
+          }
+        }
+
+        p {
+          font-weight: lighter;
+          margin: 0 16px;
+        }
+      }
+
+      .authorWrapper {
+        margin: 8px 0;
+
+        .author {
+          display: flex;
+          justify-content: end;
+
+          img {
+            background-color: #3e454a;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            margin: 0 7px 0 0;
+          }
+
+          p {
+            font-weight: lighter;
+            font-size: 14px;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .commentsWrapper {
+    margin-top: 16px;
+    border: solid 1px #444d52;
+
+    .commentsContainer {
+      background-color: $gray;
+      padding: 16px;
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 0 8px;
+      }
+
+      h5 {
+        margin-bottom: 20px;
+      }
+
+      .addCommentBlock {
+        display: flex;
+        margin-bottom: 16px;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin: 4px 12px 0 8px;
+          background-color: #3e454a;
+        }
+
+        .commentInputBlock {
+          flex: 0 1 100%;
+          margin-right: 8px;
+
+          textarea {
+            width: 100%;
+            color: $light;
+            resize: none;
+            background-color: $gray;
+            border: none;
+            border-bottom: solid 1px #777777;
+            outline: none;
+          }
+
+          textarea::placeholder {
+            color: #bababa;
+          }
+
+          textarea:focus {
+            border-bottom: solid 1px $light;
+          }
+
+          button {
+            color: $light;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background-color: transparent;
+            float: right;
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: solid 1px #567842;
+          }
+
+          button:disabled {
+            color: #bdbdbd;
+            border: solid 1px #3e5730;
+          }
+          button:hover:enabled {
+            background-color: #567842;
+          }
+
+          button:active:enabled {
+            background-color: #77a85b;
+          }
+        }
+      }
+
+      .time-ago_timeAgo {
+        color: #3b3b3b;
+      }
+    }
+  }
+}

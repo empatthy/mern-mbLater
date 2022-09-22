@@ -1,0 +1,53 @@
+.userDropdown-enter {
+  opacity: 0;
+}
+
+.userDropdown-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.userDropdown-exit {
+  opacity: 1;
+}
+
+.userDropdown-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.notificationsDropdown-enter {
+  opacity: 0;
+}
+
+.notificationsDropdown-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.notificationsDropdown-exit {
+  opacity: 1;
+}
+
+.notificationsDropdown-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.commentDropdown-enter {
+  opacity: 0;
+}
+
+.commentDropdown-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.commentDropdown-exit {
+  opacity: 1;
+}
+
+.commentDropdown-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

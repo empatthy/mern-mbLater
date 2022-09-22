@@ -1,0 +1,37 @@
+@import '../../styles/variables';
+
+%auth-button {
+  color: $light;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  float: right;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: solid 1px #567842;
+}
+
+.signup {
+  @extend %auth-button;
+  background-color: #567842;
+}
+.signup:hover {
+  background-color: #4f6f3e;
+}
+
+.signup:active {
+  background-color: #445f35;
+}
+
+.login {
+  @extend %auth-button;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.login:hover {
+  border-color: #496438;
+}
+.login:active {
+  background-color: #496438;
+}

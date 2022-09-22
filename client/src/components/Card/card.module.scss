@@ -1,0 +1,122 @@
+@import '../.././styles/variables';
+
+%reactionSvg {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.card {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto 20px auto;
+  color: $light;
+
+  > img {
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: $light;
+}
+
+.cardBody {
+  background-color: $gray;
+  padding: 20px 20px 10px 20px;
+
+  h4 {
+    font-weight: normal;
+    margin-bottom: 10px;
+    word-break: break-word;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .reactions {
+    display: flex;
+    align-items: center;
+
+    button {
+      .likeSvg {
+        svg {
+          @extend %reactionSvg;
+          stroke: $light;
+          fill: none;
+        }
+      }
+
+      .likeSvgActive {
+        svg {
+          @extend %reactionSvg;
+          stroke: #77a85b;
+          fill: #77a85b;
+        }
+      }
+      .dislikeSvg {
+        svg {
+          @extend %reactionSvg;
+          stroke: $light;
+          fill: none;
+          transform: rotate(180deg);
+        }
+      }
+
+      .dislikeSvgActive {
+        svg {
+          @extend %reactionSvg;
+          stroke: #e35050;
+          fill: #e35050;
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    img {
+      width: 19px;
+      height: 20px;
+      padding-top: 0;
+    }
+
+    p {
+      font-weight: lighter;
+      font-size: 14px;
+      margin: 0 25px 0 15px;
+      color: $light;
+    }
+  }
+
+  .authorInfo {
+    display: flex;
+    justify-content: end;
+
+    img {
+      background-color: #3e454a;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      margin-top: 1px;
+      margin-right: 7px;
+    }
+
+    p {
+      font-weight: lighter;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }
+}

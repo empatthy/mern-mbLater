@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const errorMiddleware = require('./middleware/error-middleware');
+const Notification = require('./models/Notification');
 
 const PORT = process.env.PORT || 8000;
 
@@ -40,8 +41,9 @@ io.on('connection', (socket) => {
 
   socket.on('sendNotification', ({ receiverId }) => {
     const receiver = selectUser(receiverId);
-    console.log('receiver', receiver.userId, receiver.socketId);
-    io.to(receiver.socketId).emit('getNotification');
+    if (receiver) {
+      io.to(receiver.socketId).emit('getNotification');
+    }
   });
 
   socket.on('disconnect', () => {
@@ -66,6 +68,8 @@ app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/reaction', require('./routes/reaction.routes'));
 app.use('/api/comment', require('./routes/comment.routes'));
 app.use('/api/notification', require('./routes/notification.routes'));
+app.use('/api/uploads', require('./routes/file.routes'));
+app.use('/static', express.static('static'));
 
 app.use(errorMiddleware);
 

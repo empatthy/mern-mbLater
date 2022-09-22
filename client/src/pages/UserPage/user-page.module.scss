@@ -1,0 +1,88 @@
+@import '../../styles/variables';
+
+%button {
+  position: absolute;
+  height: 30px;
+  font-size: 12px;
+  color: #c9c9c9;
+  background-color: $dark;
+  border: solid 1px #394145;
+  border-radius: 4px;
+  padding: 3px 7px;
+}
+
+%button:hover {
+  background-color: #2b3133;
+}
+
+%button:active {
+  background-color: #373f41;
+}
+
+.userPageContainer {
+  margin-top: 16px;
+  color: $light;
+
+  .user {
+    margin: 10px auto;
+    padding: 15px;
+    max-width: 700px;
+    background-color: $gray;
+    border: solid 1px #394145;
+
+    .info {
+      display: flex;
+
+      .avatarBlock {
+        position: relative;
+
+        > img {
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          margin-right: 10px;
+          margin-bottom: 15px;
+          background-color: #3e454a;
+        }
+
+        .editAvatar {
+          @extend %button;
+          bottom: 20px;
+          left: 0;
+
+          img {
+            width: 16px;
+            height: 16px;
+            margin: 0 3px 2px 0;
+          }
+        }
+
+        .removeAvatar {
+          @extend %button;
+          bottom: 20px;
+          right: 10px;
+
+          img {
+            width: 16px;
+            height: 16px;
+            margin: 0 3px 2px 0;
+          }
+        }
+      }
+
+      p {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .articlesHeader {
+    max-width: 700px;
+    margin: 0 auto 10px auto;
+
+    p {
+      margin: 0;
+    }
+  }
+}

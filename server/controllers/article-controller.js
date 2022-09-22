@@ -10,6 +10,16 @@ class ArticleController {
     }
   }
 
+  async getArticle(req, res, next) {
+    try {
+      const { articleId } = req.params;
+      const article = await articleService.getArticle(articleId);
+      return res.json(article);
+    } catch (e) {
+      next(e);
+    }
+  }
+
   async getUserArticles(req, res, next) {
     try {
       const { userId } = req.params;
@@ -22,8 +32,19 @@ class ArticleController {
 
   async addArticle(req, res, next) {
     try {
-      const { title, description, body, author, date } = req.body;
-      const article = await articleService.addArticle(title, description, body, author, date);
+      const { title, body, author, date, pictureUrl } = req.body;
+      const article = await articleService.addArticle(title, body, author, date, pictureUrl);
+      return res.json(article);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async patchArticle(req, res, next) {
+    try {
+      const { articleId } = req.params;
+      const { title, body, author, pictureUrl } = req.body;
+      const article = await articleService.patchArticle(articleId, title, body, author, pictureUrl);
       return res.json(article);
     } catch (e) {
       next(e);
@@ -33,7 +54,6 @@ class ArticleController {
   async deleteArticle(req, res, next) {
     try {
       const { articleId } = req.params;
-      console.log(articleId);
       await articleService.deleteArticle(articleId);
       return res.json(articleId);
     } catch (e) {

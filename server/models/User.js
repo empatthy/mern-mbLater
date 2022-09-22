@@ -7,7 +7,8 @@ const user = new Schema({
   //isAdmin: { type: Boolean, required: true },
   //isEditor: { type: Boolean, required: true },
   isActivated: { type: Boolean, default: false },
-  activationLink: { type: String },
+  activationLink: String,
+  avatarUrl: String,
 });
 
 module.exports = model('User', user);

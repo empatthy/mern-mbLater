@@ -1,0 +1,332 @@
+@import '../../styles/variables';
+
+%reactionSvg {
+  width: 15px;
+  height: 16px;
+  margin: auto 0;
+  cursor: pointer;
+}
+
+.commentWrapper {
+  display: flex;
+  margin-bottom: 16px;
+
+  > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 4px 12px 0 8px;
+    background-color: #3e454a;
+  }
+
+  .comment {
+    flex: 0 1 100%;
+    margin-right: 8px;
+
+    .commentReactions {
+      display: flex;
+      align-items: center;
+
+      button {
+        .likeSvg {
+          svg {
+            @extend %reactionSvg;
+            stroke: $light;
+            fill: none;
+          }
+        }
+
+        .likeSvgActive {
+          svg {
+            @extend %reactionSvg;
+            stroke: #77a85b;
+            fill: #77a85b;
+          }
+        }
+
+        .dislikeSvg {
+          svg {
+            @extend %reactionSvg;
+            stroke: $light;
+            fill: none;
+            transform: rotate(180deg);
+          }
+        }
+
+        .dislikeSvgActive {
+          svg {
+            @extend %reactionSvg;
+            stroke: #e35050;
+            fill: #e35050;
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      button:hover {
+        border: none;
+        background-color: transparent;
+      }
+
+      button:disabled svg {
+        cursor: default;
+        stroke: #adadad;
+        fill: none;
+      }
+
+      button:last-child {
+        color: #d1d1d1;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background-color: transparent;
+        float: right;
+        padding: 5px 10px;
+        border: none;
+        outline: none;
+      }
+
+      button:last-child:hover {
+        color: $light;
+      }
+
+      p {
+        font-size: 13px;
+        font-weight: lighter;
+        margin: auto 16px;
+        color: #d1d1d1;
+      }
+    }
+
+    input {
+      font-size: 1rem;
+    }
+  }
+}
+
+input {
+  width: 100%;
+  font-size: 14px;
+  color: $light;
+  background-color: $gray;
+  outline: none;
+  border: none;
+  border-bottom: solid 1px #969696;
+  padding: 0;
+  margin: 0 auto 5px auto;
+}
+
+input:focus {
+  border-bottom: solid 1px $light;
+}
+
+.answers {
+  margin: 8px 0;
+  color: #d1d1d1;
+  font-size: 14px;
+  letter-spacing: 1px;
+  width: max-content;
+  cursor: pointer;
+
+  img {
+    margin-right: 8px;
+    padding-bottom: 4px;
+  }
+}
+
+.commentBody {
+  margin-bottom: 5px;
+  overflow-wrap: anywhere;
+
+  button {
+    color: $light;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: transparent;
+    float: right;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: solid 1px #567842;
+  }
+
+  button:disabled {
+    color: #d0d0d0;
+    border: solid 1px #3e5730;
+  }
+  button:hover:enabled {
+    background-color: #567842;
+  }
+
+  button:active:enabled {
+    background-color: #77a85b;
+  }
+
+  button:last-of-type {
+    margin-top: 2px;
+    margin-right: 10px;
+    color: #d1d1d1;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: transparent;
+    float: right;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+  }
+
+  button:last-of-type:hover {
+    color: $light;
+    background-color: transparent;
+  }
+
+  button:last-of-type:active {
+    background-color: transparent;
+  }
+}
+
+.infoBlock {
+  display: flex;
+  justify-content: space-between;
+
+  .authorBlock {
+    display: flex;
+
+    p {
+      margin: 0 16px 2px 0;
+    }
+  }
+
+  .dropdownWrapper {
+    position: relative;
+
+    > img {
+      cursor: pointer;
+      padding: 0 15px;
+      visibility: hidden;
+    }
+
+    .commentDropdown {
+      position: absolute;
+      z-index: 2;
+      width: 150px;
+      top: 0;
+      right: 35px;
+      background: rgba(45, 51, 56, 0.95);
+      margin: 0;
+      padding: 0;
+      border: solid 1px #444d52;
+      color: $light;
+
+      li {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 8px 0px 8px 25px;
+        font-size: 14px;
+        margin: 3px 0;
+
+        img {
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+        }
+      }
+
+      li:hover {
+        background-color: #475159;
+      }
+    }
+  }
+}
+
+.answerWrapper {
+  display: flex;
+  margin-top: 2px;
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 4px 8px 0 8px;
+    background-color: #3e454a;
+  }
+
+  .answerInputBlock {
+    flex: 0 1 100%;
+
+    textarea {
+      width: 100%;
+      color: $light;
+      resize: none;
+      background-color: $gray;
+      border: none;
+      border-bottom: solid 1px #777777;
+      outline: none;
+    }
+
+    textarea::placeholder {
+      color: #bababa;
+    }
+
+    textarea:focus {
+      border-bottom: solid 1px $light;
+    }
+
+    button {
+      color: $light;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background-color: transparent;
+      float: right;
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: solid 1px #567842;
+    }
+
+    button:disabled {
+      color: #d0d0d0;
+      border: solid 1px #3e5730;
+    }
+    button:hover:enabled {
+      background-color: #567842;
+    }
+
+    button:active:enabled {
+      background-color: #77a85b;
+    }
+
+    button:last-of-type {
+      margin-top: 2px;
+      margin-right: 10px;
+      color: #d1d1d1;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background-color: transparent;
+      float: right;
+      padding: 5px 10px;
+      border: none;
+      outline: none;
+    }
+
+    button:last-of-type:hover {
+      color: $light;
+      background-color: transparent;
+    }
+
+    button:last-of-type:active {
+      background-color: transparent;
+    }
+  }
+}
+
+.commentWrapper:last-child {
+  margin-bottom: 0;
+}
+
+.commentWrapper:hover .comment .infoBlock .dropdownWrapper img {
+  visibility: visible;
+}

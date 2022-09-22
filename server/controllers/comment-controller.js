@@ -11,6 +11,27 @@ class CommentController {
     }
   }
 
+  async patchComment(req, res, next) {
+    try {
+      const { commentId } = req.params;
+      const { commentBody } = req.body;
+      const comment = await commentService.patchComment(commentId, commentBody);
+      return res.json(comment);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async deleteComment(req, res, next) {
+    try {
+      const { commentId } = req.params;
+      const comment = await commentService.deleteComment(commentId);
+      return res.json(comment);
+    } catch (e) {
+      next(e);
+    }
+  }
+
   async replyComment(req, res, next) {
     try {
       const { body, articleId, userId, date, answerTo } = req.body;
@@ -25,6 +46,16 @@ class CommentController {
     try {
       const { articleId } = req.params;
       const comments = await commentService.getArticleComments(articleId);
+      return res.json(comments);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async getArticleCommentsCount(req, res, next) {
+    try {
+      const { articleId } = req.params;
+      const comments = await commentService.getArticleCommentsCount(articleId);
       return res.json(comments);
     } catch (e) {
       next(e);

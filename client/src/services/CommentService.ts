@@ -12,6 +12,17 @@ export default class CommentService {
     return await $api.post<IComment>('/api/comment/addComment', { body, articleId, userId, date });
   }
 
+  static async patchComment(
+    commentId: string,
+    commentBody: string,
+  ): Promise<AxiosResponse<IComment>> {
+    return await $api.patch<IComment>(`/api/comment/${commentId}`, { commentBody });
+  }
+
+  static async deleteComment(commentId: string): Promise<AxiosResponse> {
+    return await $api.delete<IComment>(`api/comment/${commentId}`);
+  }
+
   static async replyComment(
     body: string,
     articleId: string,
@@ -30,6 +41,10 @@ export default class CommentService {
 
   static async getArticleComments(articleId: string): Promise<AxiosResponse<IComment[]>> {
     return await $api.get<IComment[]>(`/api/comment/getArticleComments/${articleId}`);
+  }
+
+  static async getArticleCommentsCount(articleId: string): Promise<AxiosResponse<IComment[]>> {
+    return await $api.get<IComment[]>(`/api/comment/count/${articleId}`);
   }
 
   static async getCommentReplies(commentId: string): Promise<AxiosResponse<IComment[]>> {

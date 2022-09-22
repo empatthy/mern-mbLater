@@ -1,4 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
+const Reaction = require('./Reaction');
 
 const comment = new Schema({
   body: { type: String, required: true },
@@ -6,7 +7,7 @@ const comment = new Schema({
   author: { type: Types.ObjectId, ref: 'User', required: true },
   date: { type: String, required: true },
   answerTo: { type: Types.ObjectId, ref: 'Comment' },
-  replies: [{ type: String }],
+  replies: [String],
 });
 
 module.exports = model('Comment', comment);

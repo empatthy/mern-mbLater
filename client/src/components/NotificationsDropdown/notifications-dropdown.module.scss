@@ -1,0 +1,80 @@
+@import '../../styles/variables';
+
+.navbarButtonWrapper {
+  position: relative;
+  margin: 4px 16px 0 0;
+
+  > img {
+    cursor: pointer;
+  }
+
+  .counter {
+    color: $light;
+    font-weight: bolder;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+  }
+
+  .notificationsDropdown {
+    position: absolute;
+    z-index: 1;
+    width: 320px;
+    height: 340px;
+    top: 35px;
+    right: -10px;
+    background: rgba(45, 51, 56, 0.95);
+    margin: 0;
+    padding: 0;
+    border: solid 1px #444d52;
+    color: $light;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: solid 1px #444d52;
+      margin-bottom: 5px;
+
+      p {
+        margin: 8px 0 8px 16px;
+      }
+
+      img {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        margin-right: 16px;
+      }
+    }
+
+    .placeholder {
+      margin-top: 70px;
+
+      img {
+        display: block;
+        margin: 0 auto;
+        width: 70px;
+        height: 70px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #b2b2b2;
+        margin: 10px 20px;
+        text-align: center;
+      }
+    }
+  }
+}

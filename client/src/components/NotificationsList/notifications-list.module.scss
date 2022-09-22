@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+%notif {
+  padding: 4px 10px 10px 10px;
+  color: $light;
+  font-size: 13px;
+  display: block;
+}
+
+.wrapper {
+  overflow-y: auto;
+
+  .notification {
+    @extend %notif;
+  }
+
+  .notificationNew {
+    @extend %notif;
+    background-color: #3b4349;
+  }
+}
