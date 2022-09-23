@@ -4,8 +4,8 @@
   "description": "mern stack",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "start": "nodemon app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
