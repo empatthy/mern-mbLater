@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
@@ -12,7 +13,7 @@
   "keywords": [
     "mern"
   ],
-  "author": "Stanislav Limanovsky <stanislav.limanovski@gmail.com>",
+  "author": "Stanislav Limanovsky",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

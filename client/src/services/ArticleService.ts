@@ -5,11 +5,11 @@ import { ArticlePayload, patchArticlePayload } from '../redux/slices/articlesSli
 
 export default class ArticleService {
   static fetchArticles(): Promise<AxiosResponse<IArticle[]>> {
-    return $api.get<IArticle[]>('api/article/articles');
+    return $api.get<IArticle[]>('/api/article/articles');
   }
 
   static getArticle(articleId: string): Promise<AxiosResponse<IArticle>> {
-    return $api.get<IArticle>(`api/article/${articleId}`);
+    return $api.get<IArticle>(`/api/article/${articleId}`);
   }
 
   static fetchUserArticles(userId: string): Promise<AxiosResponse<IArticle[]>> {

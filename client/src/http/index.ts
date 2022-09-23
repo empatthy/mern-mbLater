@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:8000';
-
 const $api = axios.create({
   withCredentials: true,
-  baseURL: API_URL,
+  baseURL: '',
 });
 
 $api.interceptors.request.use((config) => {

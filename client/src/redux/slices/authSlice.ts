@@ -4,7 +4,6 @@ import axios from 'axios';
 import AuthService from '../../services/AuthService';
 import FileService from '../../services/FileService';
 import { AuthResponse } from '../../models/response/AuthResponse';
-import { API_URL } from '../../http';
 import { RootState } from '../store';
 
 interface AuthState {
@@ -57,7 +56,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 });
 
 export const checkAuth = createAsyncThunk('auth/checkAuth', async () => {
-  const response = await axios.get<AuthResponse>(`${API_URL}/api/auth/refresh`, {
+  const response = await axios.get<AuthResponse>(`/api/auth/refresh`, {
     withCredentials: true,
   });
   localStorage.setItem('token', response.data.accessToken);
