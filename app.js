@@ -55,12 +55,7 @@ io.on('connection', (socket) => {
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    credentials: true,
-    origin: process.env.CLIENT_URL,
-  }),
-);
+app.use(cors());
 
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/article', require('./routes/article.routes'));
