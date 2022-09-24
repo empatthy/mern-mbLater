@@ -31,7 +31,7 @@ const io = new Server(httpServer, {
   cors: {
     origin:
       process.env.NODE_ENV === 'production'
-        ? 'https://infinite-oasis-67404.herokuapp.com/'
+        ? 'https://infinite-oasis-67404.herokuapp.com'
         : 'http://localhost:3000',
   },
 });
