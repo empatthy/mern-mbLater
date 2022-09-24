@@ -27,18 +27,11 @@ const selectUser = (userId) => {
   return onlineUsers.find((user) => user.userId === userId);
 };
 
-/* let io;
-if (process.env.NODE_ENV === 'production') {
-  io = new Server(httpServer);
-} else {
-  io = new Server(httpServer, {
-    cors: {
-      origin: process.env.CLIENT_URL,
-    },
-  });
-} */
-
-const io = new Server(httpServer);
+const io = new Server(httpServer, {
+  cors: {
+    origin: 'https://infinite-oasis-67404.herokuapp.com',
+  },
+});
 
 io.on('connection', (socket) => {
   socket.on('addUser', (userId) => {
