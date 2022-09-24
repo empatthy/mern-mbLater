@@ -29,7 +29,7 @@ const selectUser = (userId) => {
 
 const io = new Server(httpServer, {
   cors: {
-    origin: 'https://infinite-oasis-67404.herokuapp.com',
+    origin: 'http://localhost:3000',
   },
 });
 
