@@ -130,11 +130,7 @@ export function Card(prop: CardProp) {
   return (
     <div onClick={() => cardClickHandle} ref={cardRef} className={styles.card}>
       {prop.pictureUrl && (
-        <img
-          src={`http://localhost:8000${prop.pictureUrl}`}
-          className="card-img-top bg-light"
-          alt="Preview"
-        />
+        <img src={prop.pictureUrl} className="card-img-top bg-light" alt="Preview" />
       )}
       <div className={styles.cardBody}>
         <h4>{prop.title}</h4>
@@ -171,9 +167,7 @@ export function Card(prop: CardProp) {
             <Link to={`/users/${prop.author._id}`} className={styles.authorInfo}>
               <img
                 className="author-avatar"
-                src={
-                  prop.author.avatarUrl ? `http://localhost:8000${prop.author.avatarUrl}` : userIcon
-                }
+                src={prop.author.avatarUrl ? prop.author.avatarUrl : userIcon}
                 alt="Avatar"
               />
               <p>{prop.author.name}</p>
