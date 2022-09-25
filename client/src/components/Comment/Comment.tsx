@@ -208,7 +208,7 @@ export function Comment(prop: CommentProp) {
   return (
     <div className={styles.commentWrapper}>
       <img
-        src={prop.author.avatarUrl ? `http://localhost:8000${prop.author.avatarUrl}` : userIcon}
+        src={prop.author.avatarUrl ? prop.author.avatarUrl : userIcon}
         className="avatar"
         alt="Avatar"
       />
@@ -287,7 +287,7 @@ export function Comment(prop: CommentProp) {
         </div>
         {textIsOpened && (
           <div className={styles.answerWrapper}>
-            <img src={`http://localhost:8000${avatarUrl}`} alt="Avatar" />
+            <img src={avatarUrl} alt="Avatar" />
             <div className={styles.answerInputBlock}>
               <div>
                 <TextareaAutosize

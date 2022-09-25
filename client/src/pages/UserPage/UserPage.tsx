@@ -76,7 +76,7 @@ export const UserPage: React.FC = () => {
                 <>
                   <img
                     className={styles.userpageAvatar}
-                    src={user.avatarUrl ? process.env.API_URL + user.avatarUrl : userIcon}
+                    src={user.avatarUrl ? user.avatarUrl : userIcon}
                     alt="Avatar"
                   />
                 </>

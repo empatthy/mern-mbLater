@@ -137,9 +137,7 @@ export const ArticlePage: React.FC = () => {
           <div className={`container ${styles.articleContainer}`}>
             <h2>{article.title}</h2>
             <div className={styles.article}>
-              {article.pictureUrl && (
-                <img src={`http://localhost:8000${article.pictureUrl}`} alt="Preview" />
-              )}
+              {article.pictureUrl && <img src={article.pictureUrl} alt="Preview" />}
               <div className={styles.body}>
                 <ReactMarkdown children={article.body} />
               </div>
@@ -188,11 +186,7 @@ export const ArticlePage: React.FC = () => {
               <div className={styles.authorWrapper}>
                 <Link to={`/users/${article.author._id}`} className={styles.author}>
                   <img
-                    src={
-                      article.author.avatarUrl
-                        ? `http://localhost:8000${article.author.avatarUrl}`
-                        : userIcon
-                    }
+                    src={article.author.avatarUrl ? article.author.avatarUrl : userIcon}
                     alt="Avatar"
                   />
                   <p>{article.author.name}</p>
@@ -204,11 +198,7 @@ export const ArticlePage: React.FC = () => {
               <div className={styles.commentsContainer}>
                 <h5>Комментарии</h5>
                 <div className={styles.addCommentBlock}>
-                  <img
-                    className="avatar"
-                    src={avatarUrl ? `http://localhost:8000${avatarUrl}` : userIcon}
-                    alt="Avatar"
-                  />
+                  <img className="avatar" src={avatarUrl ? avatarUrl : userIcon} alt="Avatar" />
                   <div className={styles.commentInputBlock}>
                     <div>
                       <TextareaAutosize
