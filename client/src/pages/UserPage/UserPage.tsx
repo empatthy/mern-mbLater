@@ -21,6 +21,8 @@ import styles from './user-page.module.scss';
 export const UserPage: React.FC = () => {
   const [user, setUser] = useState<IUser>();
 
+  console.log('API_URL', process.env.REACT_APP_API_URL);
+
   const { userId } = useParams();
   const authUserId = useAppSelector(selectUserId);
   const inputFileRef = useRef<HTMLInputElement>({} as HTMLInputElement);
@@ -74,7 +76,7 @@ export const UserPage: React.FC = () => {
                 <>
                   <img
                     className={styles.userpageAvatar}
-                    src={user.avatarUrl ? `http://localhost:8000${user.avatarUrl}` : userIcon}
+                    src={user.avatarUrl ? process.env.API_URL + user.avatarUrl : userIcon}
                     alt="Avatar"
                   />
                 </>

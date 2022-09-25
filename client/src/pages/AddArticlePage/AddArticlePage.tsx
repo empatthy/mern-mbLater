@@ -114,7 +114,7 @@ export const AddArticlePage: React.FC = () => {
         <div className={styles.imageBlock}>
           <div className={styles.imageContainer}>
             {pictureUrl ? (
-              <img src={`http://localhost:8000${pictureUrl}`} alt="Preview" />
+              <img src={`https://infinite-oasis-67404.herokuapp.com${pictureUrl}`} alt="Preview" />
             ) : (
               <div className={styles.imgPlaceholder}>
                 <img src={imgPlaceholder} />
