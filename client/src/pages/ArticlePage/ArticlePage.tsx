@@ -197,22 +197,24 @@ export const ArticlePage: React.FC = () => {
             <div className={styles.commentsWrapper}>
               <div className={styles.commentsContainer}>
                 <h5>Комментарии</h5>
-                <div className={styles.addCommentBlock}>
-                  <img className="avatar" src={avatarUrl ? avatarUrl : userIcon} alt="Avatar" />
-                  <div className={styles.commentInputBlock}>
-                    <div>
-                      <TextareaAutosize
-                        value={body}
-                        onChange={(event) => setBody(event.target.value)}
-                        placeholder="Текст комментария"
-                        minRows={1}
-                      />
+                {authUserId && (
+                  <div className={styles.addCommentBlock}>
+                    <img className="avatar" src={avatarUrl ? avatarUrl : userIcon} alt="Avatar" />
+                    <div className={styles.commentInputBlock}>
+                      <div>
+                        <TextareaAutosize
+                          value={body}
+                          onChange={(event) => setBody(event.target.value)}
+                          placeholder="Текст комментария"
+                          minRows={1}
+                        />
+                      </div>
+                      <button onClick={addCommentHandle} disabled={!body} type="button">
+                        оставить комментарий
+                      </button>
                     </div>
-                    <button onClick={addCommentHandle} disabled={!body} type="button">
-                      оставить комментарий
-                    </button>
                   </div>
-                </div>
+                )}
                 {renderedComments()}
               </div>
             </div>

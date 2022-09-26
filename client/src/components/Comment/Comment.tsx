@@ -287,7 +287,7 @@ export function Comment(prop: CommentProp) {
         </div>
         {textIsOpened && (
           <div className={styles.answerWrapper}>
-            <img src={avatarUrl} alt="Avatar" />
+            <img src={authUserId ? avatarUrl : userIcon} alt="Avatar" />
             <div className={styles.answerInputBlock}>
               <div>
                 <TextareaAutosize
