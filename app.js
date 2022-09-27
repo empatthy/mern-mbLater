@@ -85,7 +85,7 @@ async function start() {
     app.listen(PORT, () => {
       console.log(`Server has been started on port ${PORT}`);
     });
-    httpServer.listen(PORT);
+    httpServer.listen(5000);
   } catch (e) {
     console.log('Server error', e.message);
     process.exit(1);
