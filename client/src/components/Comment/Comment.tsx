@@ -140,6 +140,7 @@ export function Comment(prop: CommentProp) {
       socketContext.socket.emit('sendNotification', {
         receiverId: prop.author._id,
       });
+      console.log(socketContext.socket);
     }
   };
 
