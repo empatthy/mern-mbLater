@@ -45,7 +45,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://infinite-oasis-67404.herokuapp.com/",
+  "proxy": "https://infinite-oasis-67404.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",
