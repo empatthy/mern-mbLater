@@ -1,6 +1,5 @@
 const User = require('../models/User');
 const fs = require('fs');
-const Article = require('../models/Article');
 
 class FileService {
   async uploadAvatar(userId, avatarUrl) {

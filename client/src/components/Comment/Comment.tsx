@@ -281,13 +281,15 @@ export function Comment(prop: CommentProp) {
             </div>
           </button>
           <p>{dislikes.length}</p>
-          <button onClick={() => setTextIsOpened(true)} type="button">
-            ОТВЕТИТЬ
-          </button>
+          {authUserId && (
+            <button onClick={() => setTextIsOpened(true)} type="button">
+              ОТВЕТИТЬ
+            </button>
+          )}
         </div>
         {textIsOpened && (
           <div className={styles.answerWrapper}>
-            <img src={authUserId ? avatarUrl : userIcon} alt="Avatar" />
+            <img src={avatarUrl ? avatarUrl : userIcon} alt="Avatar" />
             <div className={styles.answerInputBlock}>
               <div>
                 <TextareaAutosize
