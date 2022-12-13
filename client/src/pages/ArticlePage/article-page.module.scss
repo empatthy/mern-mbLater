@@ -12,114 +12,149 @@
   margin-right: auto;
 
   .articleContainer {
-    padding: 16px 12px;
-    color: $light;
-
-    > h2 {
-      margin: 24px 16px;
-      word-break: break-word;
-    }
+    padding: 0 12px 16px 12px;
+    color: #000;
 
     .article {
       background-color: $gray;
-      border: 1px solid #444d52;
-      padding: 16px;
 
-      p {
-        text-indent: 2rem;
+      > h2 {
+        font-size: 26px;
+        max-width: 700px;
+        padding-top: 24px;
+        margin: 0 auto 16px auto;
+        word-break: break-word;
       }
 
-      img {
+      .counters {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto 16px auto;
+        max-width: 700px;
+
+        p {
+          color: #696969;
+          font-size: 14px;
+          margin: 0;
+        }
+
+        .commentsCount {
+          display: flex;
+          align-items: center;
+
+          img {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      > img {
         display: block;
         width: 100%;
         margin: 0 auto 20px auto;
       }
 
       .body {
-        margin-left: 16px;
-        margin-right: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 700px;
 
-        blockquote {
-          color: rgb(193, 193, 193);
-          margin: 0;
-          padding-left: 2em;
-          border-left: 0.5em rgb(94, 94, 94) solid;
-        }
-      }
-    }
-
-    .info {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 24px;
-      background-color: #333a3e;
-      border: solid 1px #444d52;
-      border-top: none;
-
-      .reactions {
-        display: flex;
-        align-items: center;
-
-        button {
-          .likeSvg {
-            svg {
-              @extend %reactionSvg;
-              stroke: $light;
-              fill: none;
-            }
-          }
-
-          .likeSvgActive {
-            svg {
-              @extend %reactionSvg;
-              stroke: #77a85b;
-              fill: #77a85b;
-            }
-          }
-          .dislikeSvg {
-            svg {
-              @extend %reactionSvg;
-              stroke: $light;
-              fill: none;
-              transform: rotate(180deg);
-            }
-          }
-
-          .dislikeSvgActive {
-            svg {
-              @extend %reactionSvg;
-              stroke: #e35050;
-              fill: #e35050;
-              transform: rotate(180deg);
-            }
-          }
+        h1 {
+          font-size: 20px;
         }
 
         p {
-          font-weight: lighter;
-          margin: 0 16px;
+          text-indent: 2rem;
+          margin: 12px 0 12px 0;
+        }
+
+        p:last-of-type {
+          margin-bottom: 16px;
+        }
+
+        blockquote {
+          color: rgb(126, 126, 126);
+          margin: 0;
+          padding-left: 2em;
+          border-left: 0.5em rgb(126, 126, 126) solid;
         }
       }
 
-      .authorWrapper {
-        margin: 8px 0;
+      .infoWrapper {
+        border-top: solid 1px #ebebeb;
+      }
 
-        .author {
+      .info {
+        display: flex;
+        justify-content: space-between;
+        max-width: 700px;
+        margin: 0 auto 0 auto;
+        background-color: #fff;
+
+        .reactions {
           display: flex;
-          justify-content: end;
+          align-items: center;
 
-          img {
-            background-color: #3e454a;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            margin: 0 7px 0 0;
+          button {
+            .likeSvg {
+              svg {
+                @extend %reactionSvg;
+                stroke: #000;
+                fill: none;
+              }
+            }
+
+            .likeSvgActive {
+              svg {
+                @extend %reactionSvg;
+                stroke: #77a85b;
+                fill: #77a85b;
+              }
+            }
+            .dislikeSvg {
+              svg {
+                @extend %reactionSvg;
+                stroke: #000;
+                fill: none;
+                transform: rotate(180deg);
+              }
+            }
+
+            .dislikeSvgActive {
+              svg {
+                @extend %reactionSvg;
+                stroke: #e35050;
+                fill: #e35050;
+                transform: rotate(180deg);
+              }
+            }
           }
 
           p {
-            font-weight: lighter;
-            font-size: 14px;
-            margin-bottom: 0;
+            margin: 0 16px;
+          }
+        }
+
+        .authorWrapper {
+          margin: 8px 0;
+
+          .author {
+            display: flex;
+            justify-content: end;
+
+            img {
+              width: 22px;
+              height: 22px;
+              border-radius: 50%;
+              margin: 0 7px 0 0;
+              box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+            }
+
+            p {
+              font-size: 14px;
+              margin-bottom: 0;
+            }
           }
         }
       }
@@ -128,11 +163,12 @@
 
   .commentsWrapper {
     margin-top: 16px;
-    border: solid 1px #444d52;
+    background-color: $gray;
 
     .commentsContainer {
-      background-color: $gray;
-      padding: 16px;
+      padding: 16px 0 0 0;
+      max-width: 700px;
+      margin: 0 auto 0 auto;
 
       .avatar {
         width: 50px;
@@ -154,7 +190,7 @@
           height: 40px;
           border-radius: 50%;
           margin: 4px 12px 0 8px;
-          background-color: #3e454a;
+          box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
         }
 
         .commentInputBlock {
@@ -163,44 +199,42 @@
 
           textarea {
             width: 100%;
-            color: $light;
+            color: #000;
             resize: none;
             background-color: $gray;
             border: none;
-            border-bottom: solid 1px #777777;
+            border-bottom: solid 1px rgb(179, 179, 179);
             outline: none;
           }
 
           textarea::placeholder {
-            color: #bababa;
+            color: rgb(179, 179, 179);
           }
 
           textarea:focus {
-            border-bottom: solid 1px $light;
+            border-bottom: solid 1px #000;
           }
 
           button {
-            color: $light;
+            color: #fff;
             font-size: 12px;
             letter-spacing: 1px;
-            text-transform: uppercase;
-            background-color: transparent;
+            background-color: rgb(47, 47, 47);
             float: right;
             padding: 5px 10px;
             border-radius: 4px;
-            border: solid 1px #567842;
           }
 
           button:disabled {
-            color: #bdbdbd;
-            border: solid 1px #3e5730;
+            color: rgb(113, 113, 113);
+            background-color: rgb(240, 240, 240);
           }
           button:hover:enabled {
-            background-color: #567842;
+            background-color: rgb(63, 63, 63);
           }
 
           button:active:enabled {
-            background-color: #77a85b;
+            background-color: rgb(100, 100, 100);
           }
         }
       }

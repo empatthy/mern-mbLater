@@ -10,7 +10,7 @@
   position: relative;
   max-width: 700px;
   margin: 0 auto 20px auto;
-  color: $light;
+  color: #000;
 
   > img {
     object-fit: cover;
@@ -28,7 +28,7 @@ a:hover,
 a:focus,
 a:active {
   text-decoration: none;
-  color: $light;
+  color: #000;
 }
 
 .cardBody {
@@ -55,7 +55,7 @@ a:active {
       .likeSvg {
         svg {
           @extend %reactionSvg;
-          stroke: $light;
+          stroke: #000;
           fill: none;
         }
       }
@@ -70,7 +70,7 @@ a:active {
       .dislikeSvg {
         svg {
           @extend %reactionSvg;
-          stroke: $light;
+          stroke: #000;
           fill: none;
           transform: rotate(180deg);
         }
@@ -93,10 +93,9 @@ a:active {
     }
 
     p {
-      font-weight: lighter;
       font-size: 14px;
       margin: 0 25px 0 15px;
-      color: $light;
+      color: #000;
     }
   }
 
@@ -105,7 +104,6 @@ a:active {
     justify-content: end;
 
     img {
-      background-color: #3e454a;
       width: 22px;
       height: 22px;
       border-radius: 50%;
@@ -114,7 +112,6 @@ a:active {
     }
 
     p {
-      font-weight: lighter;
       font-size: 14px;
       margin-bottom: 0;
     }

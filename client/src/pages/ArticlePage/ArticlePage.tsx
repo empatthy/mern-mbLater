@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import TextareaAutosize from 'react-textarea-autosize';
 
+import CommentService from '../../services/CommentService';
 import { TimeAgo, NavBar, Comment, getDateNowISO, Loader } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useParams, Link } from 'react-router-dom';
@@ -26,13 +27,14 @@ import { IArticle } from '../../models/IArticle';
 
 import styles from './article-page.module.scss';
 
-import userIcon from '../../img/user.svg';
+import noAvatarIcon from '../../img/no-avatar.svg';
 import deleteArticleIcon from '../../img/can.svg';
 import editArticleIcon from '../../img/edit.svg';
-import viewsIcon from '../../img/views-icon.svg';
+import commentIcon from '../../img/comment-icon.svg';
 
 export const ArticlePage: React.FC = () => {
   const [article, setArticle] = useState<IArticle>();
+  const [commentsCount, setCommentsCount] = useState<number>(0);
 
   const [body, setBody] = useState<string>('');
   const dispatch = useAppDispatch();
@@ -129,77 +131,103 @@ export const ArticlePage: React.FC = () => {
     setBody('');
   };
 
+  useEffect(() => {
+    if (articleId) {
+      const getArticleCommentsCount = async () => {
+        const response = await CommentService.getArticleCommentsCount(articleId);
+        setCommentsCount(response.data.length);
+      };
+      getArticleCommentsCount();
+    }
+  }, []);
+
   return (
     <div className="wrapper">
       <NavBar />
       {article ? (
         <div className={styles.articleWrapper}>
           <div className={`container ${styles.articleContainer}`}>
-            <h2>{article.title}</h2>
             <div className={styles.article}>
+              <h2>{article.title}</h2>
+              <div className={styles.counters}>
+                <div className={styles.commentsCount}>
+                  <img src={commentIcon} />
+                  <p>{commentsCount}</p>
+                </div>
+                <p>{article.views} просмотров</p>
+              </div>
               {article.pictureUrl && <img src={article.pictureUrl} alt="Preview" />}
               <div className={styles.body}>
                 <ReactMarkdown children={article.body} />
               </div>
-            </div>
-            <div className={styles.info}>
-              <div className={styles.reactions}>
-                <button
-                  onClick={userReaction?.reactionType === true ? removeReactionHandle : likeHandle}
-                  type="button">
-                  <div
-                    className={
-                      userReaction?.reactionType === true ? styles.likeSvgActive : styles.likeSvg
-                    }>
-                    <ReactionIcon />
+              <div className={styles.infoWrapper}>
+                <div className={styles.info}>
+                  <div className={styles.reactions}>
+                    <button
+                      onClick={
+                        userReaction?.reactionType === true ? removeReactionHandle : likeHandle
+                      }
+                      type="button">
+                      <div
+                        className={
+                          userReaction?.reactionType === true
+                            ? styles.likeSvgActive
+                            : styles.likeSvg
+                        }>
+                        <ReactionIcon />
+                      </div>
+                    </button>
+                    <p>{likes.length}</p>
+                    <button
+                      onClick={
+                        userReaction?.reactionType === false ? removeReactionHandle : dislikeHandle
+                      }
+                      type="button">
+                      <div
+                        className={
+                          userReaction?.reactionType === false
+                            ? styles.dislikeSvgActive
+                            : styles.dislikeSvg
+                        }>
+                        <ReactionIcon />
+                      </div>
+                    </button>
+                    <p>{dislikes.length}</p>
+                    {authUserId === article.author._id && (
+                      <>
+                        <Link to={`/articles/${articleId}/edit`}>
+                          <img src={editArticleIcon} alt="Edit" />
+                        </Link>
+                        <Link to="/articles">
+                          <img src={deleteArticleIcon} onClick={deleteArticleHandle} alt="Delete" />
+                        </Link>
+                      </>
+                    )}
                   </div>
-                </button>
-                <p>{likes.length}</p>
-                <button
-                  onClick={
-                    userReaction?.reactionType === false ? removeReactionHandle : dislikeHandle
-                  }
-                  type="button">
-                  <div
-                    className={
-                      userReaction?.reactionType === false
-                        ? styles.dislikeSvgActive
-                        : styles.dislikeSvg
-                    }>
-                    <ReactionIcon />
+                  <div className={styles.authorWrapper}>
+                    <Link to={`/users/${article.author._id}`} className={styles.author}>
+                      <img
+                        src={article.author.avatarUrl ? article.author.avatarUrl : noAvatarIcon}
+                        alt="Avatar"
+                      />
+                      <p>{article.author.name}</p>
+                    </Link>
+                    <TimeAgo date={article.date} />
                   </div>
-                </button>
-                <p>{dislikes.length}</p>
-                <img src={viewsIcon} alt="views" />
-                <p>{article.views}</p>
-                {authUserId === article.author._id && (
-                  <>
-                    <Link to={`/articles/${articleId}/edit`}>
-                      <img src={editArticleIcon} alt="Edit" />
-                    </Link>
-                    <Link to="/articles">
-                      <img src={deleteArticleIcon} onClick={deleteArticleHandle} alt="Delete" />
-                    </Link>
-                  </>
-                )}
-              </div>
-              <div className={styles.authorWrapper}>
-                <Link to={`/users/${article.author._id}`} className={styles.author}>
-                  <img
-                    src={article.author.avatarUrl ? article.author.avatarUrl : userIcon}
-                    alt="Avatar"
-                  />
-                  <p>{article.author.name}</p>
-                </Link>
-                <TimeAgo date={article.date} />
+                </div>
               </div>
             </div>
+
             <div className={styles.commentsWrapper}>
               <div className={styles.commentsContainer}>
-                <h5>Комментарии</h5>
+                <h5>Комментарии: {commentsCount}</h5>
                 {authUserId && (
                   <div className={styles.addCommentBlock}>
-                    <img className="avatar" src={avatarUrl ? avatarUrl : userIcon} alt="Avatar" />
+                    <img
+                      className="avatar"
+                      src={avatarUrl ? avatarUrl : noAvatarIcon}
+                      alt="Avatar"
+                    />
                     <div className={styles.commentInputBlock}>
                       <div>
                         <TextareaAutosize
@@ -210,7 +238,7 @@ export const ArticlePage: React.FC = () => {
                         />
                       </div>
                       <button onClick={addCommentHandle} disabled={!body} type="button">
-                        оставить комментарий
+                        Оставить комментарий
                       </button>
                     </div>
                   </div>

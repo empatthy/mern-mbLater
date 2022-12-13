@@ -6,6 +6,7 @@ import { selectIsAuth, logout, selectUserName, selectUserId } from '../../redux/
 import { SocketContext } from '../../socket/socket-context';
 
 import userIcon from '../../img/user.svg';
+import noAvatarIcon from '../../img/no-avatar.svg';
 import personIcon from '../../img/user2.svg';
 import editIcon from '../../img/edit-light.svg';
 import logOutIcon from '../../img/log-out.svg';
@@ -49,7 +50,7 @@ export const UserDropdown: React.FC = () => {
       <img
         onClick={dropdownToggle}
         className={styles.userDropdownAvatar}
-        src={avatarUrl ? avatarUrl : userIcon}
+        src={userIcon}
         alt="User"
       />
       <CSSTransition
@@ -65,7 +66,7 @@ export const UserDropdown: React.FC = () => {
               <div className={styles.user}>
                 <img
                   className={styles.avatar}
-                  src={avatarUrl ? avatarUrl : userIcon}
+                  src={avatarUrl ? avatarUrl : noAvatarIcon}
                   alt="UserAvatar"
                 />
                 <p>{userName}</p>

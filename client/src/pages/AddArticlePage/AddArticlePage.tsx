@@ -15,7 +15,6 @@ import styles from './add-article-page.module.scss';
 
 import imgPlaceholder from '../../img/picture-placeholder.svg';
 import addImgIcon from '../../img/add-cross-icon.svg';
-import arrowIcon from '../../img/arrow.svg';
 import { BackIcon } from '../../components/svg/BackIcon';
 
 export const AddArticlePage: React.FC = () => {
@@ -114,7 +113,7 @@ export const AddArticlePage: React.FC = () => {
         <div className={styles.imageBlock}>
           <div className={styles.imageContainer}>
             {pictureUrl ? (
-              <img src={`https://infinite-oasis-67404.herokuapp.com${pictureUrl}`} alt="Preview" />
+              <img src={pictureUrl} alt="Preview" />
             ) : (
               <div className={styles.imgPlaceholder}>
                 <img src={imgPlaceholder} />
@@ -152,11 +151,11 @@ export const AddArticlePage: React.FC = () => {
           <button
             onClick={isEditing ? updateArticleHandle : addArticleHandle}
             disabled={!title || !body}>
-            {isEditing ? 'применить изменения' : 'опубликовать'}
+            {isEditing ? 'Применить изменения' : 'Опубликовать'}
           </button>
           <button onClick={() => navigate('/')}>
             <BackIcon />
-            назад
+            Назад
           </button>
         </div>
       </div>

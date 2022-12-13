@@ -34,7 +34,7 @@ import hideRepliesIcon from '../../img/hide-replies-icon.svg';
 import dropdownIcon from '../../img/comment-menu-icon.svg';
 import editIcon from '../../img/edit-light.svg';
 import deleteIcon from '../../img/can-light.svg';
-import userIcon from '../../img/user.svg';
+import noAvatarIcon from '../../img/no-avatar.svg';
 
 import styles from './comment.module.scss';
 
@@ -209,7 +209,7 @@ export function Comment(prop: CommentProp) {
   return (
     <div className={styles.commentWrapper}>
       <img
-        src={prop.author.avatarUrl ? prop.author.avatarUrl : userIcon}
+        src={prop.author.avatarUrl ? prop.author.avatarUrl : noAvatarIcon}
         className="avatar"
         alt="Avatar"
       />
@@ -284,13 +284,13 @@ export function Comment(prop: CommentProp) {
           <p>{dislikes.length}</p>
           {authUserId && (
             <button onClick={() => setTextIsOpened(true)} type="button">
-              ОТВЕТИТЬ
+              Ответить
             </button>
           )}
         </div>
         {textIsOpened && (
           <div className={styles.answerWrapper}>
-            <img src={avatarUrl ? avatarUrl : userIcon} alt="Avatar" />
+            <img src={avatarUrl ? avatarUrl : noAvatarIcon} alt="Avatar" />
             <div className={styles.answerInputBlock}>
               <div>
                 <TextareaAutosize
@@ -301,10 +301,10 @@ export function Comment(prop: CommentProp) {
                 />
               </div>
               <button onClick={replyCommentHandle} disabled={!body} type="button">
-                ОТВЕТИТЬ
+                Ответить
               </button>
               <button onClick={() => setTextIsOpened(false)} type="button">
-                ОТМЕНИТЬ
+                Отменить
               </button>
             </div>
           </div>

@@ -10,13 +10,17 @@ export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const articles = useAppSelector(selectAllArticles);
   const articlesStatus = useAppSelector(selectArticlesStatus);
+  const searchValue = useAppSelector((state) => state.articles.searchValue);
 
   useEffect(() => {
     dispatch(fetchArticles());
   }, []);
 
   const renderedArticles = () => {
-    return articles.map((article, index) => <Card key={index} {...article} />);
+    const filteredArticles = articles.filter((article) =>
+      article.title.toLowerCase().includes(searchValue.toLowerCase()),
+    );
+    return filteredArticles.map((article, index) => <Card key={index} {...article} />);
   };
 
   return (

@@ -14,7 +14,7 @@ import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 
 import editAvatarIcon from '../../img/edit.svg';
 import removeAvatarIcon from '../../img/can.svg';
-import userIcon from '../../img/user.svg';
+import noAvatarIcon from '../../img/no-avatar.svg';
 
 import styles from './user-page.module.scss';
 
@@ -76,7 +76,7 @@ export const UserPage: React.FC = () => {
                 <>
                   <img
                     className={styles.userpageAvatar}
-                    src={user.avatarUrl ? user.avatarUrl : userIcon}
+                    src={user.avatarUrl ? user.avatarUrl : noAvatarIcon}
                     alt="Avatar"
                   />
                 </>

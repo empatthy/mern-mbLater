@@ -59,7 +59,7 @@ export const NotificationsDropdown: React.FC = () => {
         <ul className={styles.notificationsDropdown}>
           <div className={styles.header}>
             <p>Уведомления</p>
-            <img src={settingsIcon} alt="Настройки" />
+            {/* <img src={settingsIcon} alt="Настройки" /> */}
           </div>
           {notifications.length !== 0 ? (
             <NotificationsList />

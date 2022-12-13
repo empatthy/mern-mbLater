@@ -6,6 +6,7 @@ import ArticleService from '../../services/ArticleService';
 
 interface ArticlesState {
   items: IArticle[];
+  searchValue: string;
   status: 'idle' | 'loading' | 'succeeded' | 'rejected';
 }
 
@@ -26,6 +27,7 @@ export type patchArticlePayload = {
 
 const initialState: ArticlesState = {
   items: [],
+  searchValue: '',
   status: 'idle',
 };
 
@@ -58,7 +60,11 @@ export const deleteArticle = createAsyncThunk(
 const articlesSlice = createSlice({
   name: 'articles',
   initialState,
-  reducers: {},
+  reducers: {
+    searchValueChanged(state, action) {
+      state.searchValue = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchArticles.pending, (state) => {
@@ -93,6 +99,8 @@ const articlesSlice = createSlice({
       });
   },
 });
+
+export const { searchValueChanged } = articlesSlice.actions;
 
 export const selectAllArticles = (state: RootState) => state.articles.items;
 export const selectArticlesStatus = (state: RootState) => state.articles.status;

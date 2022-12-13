@@ -9,7 +9,7 @@
   }
 
   .counter {
-    color: $light;
+    color: #ffffff;
     font-weight: bolder;
     width: 15px;
     height: 15px;
@@ -32,19 +32,19 @@
     height: 340px;
     top: 35px;
     right: -10px;
-    background: rgba(45, 51, 56, 0.95);
+    background-color: $white;
     margin: 0;
     padding: 0;
-    border: solid 1px #444d52;
-    color: $light;
+    color: #000;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 3px 5px 0 rgb(116 116 116 / 25%);
 
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: solid 1px #444d52;
+      border-bottom: solid 1px #ebebeb;
       margin-bottom: 5px;
 
       p {
@@ -71,7 +71,6 @@
 
       p {
         font-size: 14px;
-        color: #b2b2b2;
         margin: 10px 20px;
         text-align: center;
       }

@@ -1,12 +1,12 @@
 @import '../../styles/variables';
 
 ::placeholder {
-  color: #969696;
+  color: #bababa;
 }
 
 .authWrapper {
   max-height: 100%;
-  background-color: $dark;
+  background-color: $backgroundGrey;
 
   .authContainer {
     margin: 15vh auto 0 auto;
@@ -16,10 +16,8 @@
       background-color: $gray;
       padding: 10%;
       padding-top: 5%;
-      border: solid 1px #444d52;
 
       p {
-        color: $light;
         text-align: center;
         font-size: 16px;
         text-transform: uppercase;
@@ -30,58 +28,89 @@
 
       button {
         color: $light;
-        font-size: 12px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
+        font-size: 14px;
         padding: 5px 10px;
         border-radius: 2px;
-        border: solid 1px #567842;
-        background-color: #567842;
+        background-color: rgb(47, 47, 47);
         width: 100%;
         height: 36px;
       }
 
       button:disabled {
-        color: #d0d0d0;
-        border: solid 1px #3e5730;
-        background-color: #3e5730;
+        color: rgb(113, 113, 113);
+        background-color: rgb(240, 240, 240);
       }
 
       button:enabled:hover {
-        background-color: #4f6f3e;
+        background-color: rgb(63, 63, 63);
       }
       button:enabled:active {
-        background-color: #445f35;
+        background-color: rgb(100, 100, 100);
       }
 
       .inputBlock {
         margin-bottom: 25px;
 
         .inputGroup {
-          margin-bottom: 10px;
+          margin-bottom: 8px;
 
           input {
             width: 100%;
             font-size: 14px;
-            color: $light;
             background-color: $gray;
             outline: none;
             border: none;
-            border-bottom: solid 2px #969696;
+            border-bottom: solid 2px #bababa;
             padding: 5px 0;
             margin: 0 auto;
           }
 
           input:focus {
-            border-bottom: solid 2px $light;
+            border-bottom: solid 2px #000000;
           }
 
           input:-webkit-autofill,
           input:-webkit-autofill:hover,
           input:-webkit-autofill:focus {
-            -webkit-text-fill-color: $light;
-            caret-color: $light;
+            /* -webkit-text-fill-color: $light;
+            caret-color: $light; */
             box-shadow: 0 0 0 20px $gray inset;
+          }
+        }
+
+        .inputGroupError {
+          margin-bottom: 8px;
+
+          input {
+            width: 100%;
+            font-size: 14px;
+            background-color: $gray;
+            outline: none;
+            border: none;
+            border-bottom: solid 2px #e52e3a;
+            padding: 5px 0;
+            margin: 0 auto;
+          }
+
+          input:focus {
+            border-bottom: solid 2px #000000;
+          }
+
+          input:-webkit-autofill,
+          input:-webkit-autofill:hover,
+          input:-webkit-autofill:focus {
+            /* -webkit-text-fill-color: $light;
+            caret-color: $light; */
+            box-shadow: 0 0 0 20px $gray inset;
+          }
+
+          p {
+            margin: 5px 0 0 0;
+            font-size: 12px;
+            text-transform: none;
+            letter-spacing: normal;
+            color: #e52e3a;
+            text-align: left;
           }
         }
 

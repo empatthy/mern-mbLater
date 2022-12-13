@@ -160,8 +160,6 @@ export function Card(prop: CardProp) {
             <p>{dislikes.length}</p>
             <img src={commentIcon} alt="comments" />
             <p>{commentsCount}</p>
-            <img src={viewsIcon} alt="views" />
-            <p>{prop.views}</p>
           </div>
           <div>
             <Link to={`/users/${prop.author._id}`} className={styles.authorInfo}>
