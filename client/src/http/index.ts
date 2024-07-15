@@ -4,7 +4,7 @@ const $api = axios.create({
   withCredentials: true,
   baseURL:
     process.env.NODE_ENV === 'production'
-      ? 'https://mern-mblater-fe.onrender.com'
+      ? 'https://mern-mblater-be.onrender.com'
       : 'http://localhost:3000',
 });
 
