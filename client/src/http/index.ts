@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const $api = axios.create({
-  withCredentials: true,
+  withCredentials: false,
   baseURL:
     process.env.NODE_ENV === 'production'
       ? 'https://mern-mblater-be.onrender.com'
