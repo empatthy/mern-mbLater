@@ -45,7 +45,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://localhost:8000",
+  "proxy": "https://mern-mblater-be.onrender.com",
   "browserslist": {
     "production": [
       ">0.2%",
