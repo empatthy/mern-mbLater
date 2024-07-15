@@ -21,7 +21,6 @@ import styles from './card.module.scss';
 import { ReactionIcon } from '../svg/ReactionIcon';
 import userIcon from '../../img/user.svg';
 import commentIcon from '../../img/comment-icon.svg';
-import viewsIcon from '../../img/views-icon.svg';
 
 interface CardProp {
   _id: string;

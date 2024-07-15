@@ -216,7 +216,12 @@ export function Comment(prop: CommentProp) {
       <div className={styles.comment}>
         <div className={styles.infoBlock}>
           <div className={styles.authorBlock}>
-            <p>{prop.author.name}</p>
+            <p>
+              {prop.author.name}{' '}
+              {prop.author._id === prop.article.author._id && (
+                <span className={styles.sd}>Автор</span>
+              )}
+            </p>
             <TimeAgo date={prop.date} />
           </div>
 

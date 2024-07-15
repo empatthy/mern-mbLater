@@ -68,7 +68,12 @@ class CommentService {
   async getArticleComments(articleId) {
     const comments = await Comment.find({ article: articleId, answerTo: null })
       .populate('author', ['name', 'avatarUrl'])
-      .populate('article', '_id')
+      .populate({
+        path: 'article',
+        model: 'Article',
+        select: '_id',
+        populate: { path: 'author', model: 'User', select: '_id name' },
+      })
       .populate('answerTo', '_id');
     return comments;
   }
@@ -81,7 +86,12 @@ class CommentService {
   async getCommentReplies(commentId) {
     const replies = await Comment.find({ answerTo: commentId })
       .populate('author', ['name', 'avatarUrl'])
-      .populate('article', '_id')
+      .populate({
+        path: 'article',
+        model: 'Article',
+        select: '_id',
+        populate: { path: 'author', model: 'User', select: '_id name' },
+      })
       .populate('answerTo', '_id');
     return replies;
   }
