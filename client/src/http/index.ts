@@ -2,10 +2,7 @@ import axios from 'axios';
 
 const $api = axios.create({
   withCredentials: true,
-  baseURL:
-    process.env.NODE_ENV === 'production'
-      ? 'https://infinite-oasis-67404.herokuapp.com'
-      : 'http://localhost:3000',
+  baseURL: process.env.NODE_ENV === 'production' ? process.env.API_URL : 'http://localhost:3000',
 });
 
 $api.interceptors.request.use((config) => {
