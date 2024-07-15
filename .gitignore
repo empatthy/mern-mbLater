@@ -1,5 +1,5 @@
 node_modules
 /client/build
 .env
-static/avatars/
-static/pictures/
+static/avatars/*
+static/pictures/*
