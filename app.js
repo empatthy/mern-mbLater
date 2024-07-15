@@ -52,19 +52,24 @@ io.on('connection', (socket) => {
   });
 });
 
+var corsOptions = {
+  origin: 'https://mern-mblater-fe.onrender.com',
+  optionsSuccessStatus: 200,
+};
+
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use('/api/auth', require('./routes/auth.routes'));
-app.use('/api/article', require('./routes/article.routes'));
-app.use('/api/users', require('./routes/user.routes'));
-app.use('/api/reaction', require('./routes/reaction.routes'));
-app.use('/api/comment', require('./routes/comment.routes'));
-app.use('/api/notification', require('./routes/notification.routes'));
-app.use('/api/uploads', require('./routes/file.routes'));
-app.use('/static', express.static('static'));
+app.use('/api/auth', cors(corsOptions), require('./routes/auth.routes'));
+app.use('/api/article', cors(corsOptions), require('./routes/article.routes'));
+app.use('/api/users', cors(corsOptions), require('./routes/user.routes'));
+app.use('/api/reaction', cors(corsOptions), require('./routes/reaction.routes'));
+app.use('/api/comment', cors(corsOptions), require('./routes/comment.routes'));
+app.use('/api/notification', cors(corsOptions), require('./routes/notification.routes'));
+app.use('/api/uploads', cors(corsOptions), require('./routes/file.routes'));
+app.use('/static', cors(corsOptions), express.static('static'));
 
 app.use(errorMiddleware);
 
