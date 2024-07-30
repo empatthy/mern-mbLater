@@ -1,1 +1,1 @@
-https://mern-mblater-fe.onrender.com/articles
+https://mern-mblater-fe.onrender.com/
